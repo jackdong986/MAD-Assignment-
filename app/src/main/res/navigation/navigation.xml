@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/navigation">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/property_Home">
 
+    <fragment
+        android:id="@+id/property_Home"
+        android:name="com.example.mad_assignment.all.property_Home"
+        android:label="fragment_property_home"
+        tools:layout="@layout/fragment_property_home" />
+    <fragment
+        android:id="@+id/propertyDetails"
+        android:name="com.example.mad_assignment.all.propertyDetails"
+        android:label="fragment_property_details"
+        tools:layout="@layout/fragment_property_details" />
+    <fragment
+        android:id="@+id/propertySearch"
+        android:name="com.example.mad_assignment.all.propertySearch"
+        android:label="fragment_property_search"
+        tools:layout="@layout/fragment_property_search" />
+    <fragment
+        android:id="@+id/propertyWishlist"
+        android:name="com.example.mad_assignment.client.propertyWishlist"
+        android:label="fragment_property_wishlist"
+        tools:layout="@layout/fragment_property_wishlist" />
+    <fragment
+        android:id="@+id/propertyProfile"
+        android:name="com.example.mad_assignment.client.profile.propertyProfile"
+        android:label="fragment_property_profile"
+        tools:layout="@layout/fragment_property_profile" />
 </navigation>
