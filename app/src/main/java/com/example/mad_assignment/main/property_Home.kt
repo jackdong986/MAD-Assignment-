@@ -1,4 +1,4 @@
-package com.example.mad_assignment.all
+package com.example.mad_assignment.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

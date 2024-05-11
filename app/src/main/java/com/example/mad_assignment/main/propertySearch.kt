@@ -1,4 +1,4 @@
-package com.example.mad_assignment.all
+package com.example.mad_assignment.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.mad_assignment.R
-import com.example.mad_assignment.databinding.FragmentPropertyHomeBinding
 import com.example.mad_assignment.databinding.FragmentPropertySearchBinding
 
 class propertySearch : Fragment() {
