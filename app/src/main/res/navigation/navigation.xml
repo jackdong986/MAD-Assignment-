@@ -8,26 +8,26 @@
     <fragment
         android:id="@+id/property_Home"
         android:name="com.example.mad_assignment.all.property_Home"
-        android:label="fragment_property_home"
+        android:label="Property Home"
         tools:layout="@layout/fragment_property_home" />
     <fragment
         android:id="@+id/propertyDetails"
         android:name="com.example.mad_assignment.all.propertyDetails"
-        android:label="fragment_property_details"
+        android:label="Property Details"
         tools:layout="@layout/fragment_property_details" />
     <fragment
         android:id="@+id/propertySearch"
         android:name="com.example.mad_assignment.all.propertySearch"
-        android:label="fragment_property_search"
+        android:label="Property Search"
         tools:layout="@layout/fragment_property_search" />
     <fragment
         android:id="@+id/propertyWishlist"
         android:name="com.example.mad_assignment.client.propertyWishlist"
-        android:label="fragment_property_wishlist"
+        android:label="Property Wishlist"
         tools:layout="@layout/fragment_property_wishlist" />
     <fragment
         android:id="@+id/propertyProfile"
         android:name="com.example.mad_assignment.client.profile.propertyProfile"
-        android:label="fragment_property_profile"
+        android:label="Property Profile"
         tools:layout="@layout/fragment_property_profile" />
 </navigation>

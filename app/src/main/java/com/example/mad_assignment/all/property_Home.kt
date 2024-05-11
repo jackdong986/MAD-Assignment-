@@ -18,7 +18,7 @@ class property_Home : Fragment() {
     ): View? {
         binding = FragmentPropertyHomeBinding.inflate(inflater, container, false)
         binding.testBtn.setOnClickListener{
-            nav.navigate(R.id.propertyDetails)
+            nav.navigate(R.id.propertySearch)
         }
 
         return binding.root
