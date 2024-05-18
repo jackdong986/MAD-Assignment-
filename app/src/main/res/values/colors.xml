@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="profileBackgroundColor">#F5F5F5</color>
+    <color name="profilePictureBackground">#CCCCCC</color>
+    <color name="profileNameColor">#000000</color>
+    <color name="profileUserIdColor">#888888</color>
+    <color name="buttonBackground">#6200EE</color>
 </resources>

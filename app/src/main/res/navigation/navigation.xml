@@ -9,12 +9,31 @@
         android:id="@+id/property_Home"
         android:name="com.example.mad_assignment.main.property_Home"
         android:label="Property Home"
-        tools:layout="@layout/fragment_property_home" />
+        tools:layout="@layout/fragment_property_home" >
+    <action
+        android:id="@+id/action_propertyHome_to_propertyDetails"
+        app:destination="@id/propertyDetails" />
+    </fragment>
     <fragment
         android:id="@+id/propertyDetails"
         android:name="com.example.mad_assignment.main.propertyDetails"
         android:label="Property Details"
-        tools:layout="@layout/fragment_property_details" />
+        tools:layout="@layout/fragment_property_details">
+        <argument
+            android:name="propertyName"
+            app:argType="string" />
+        <argument
+            android:name="propertyPrice"
+            app:argType="string" />
+        <argument
+            android:name="propertyImageResId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_propertyDetails_to_propertyWishlist"
+            app:destination="@id/propertyWishlist" />
+    </fragment>
+
+
     <fragment
         android:id="@+id/propertySearch"
         android:name="com.example.mad_assignment.main.propertySearch"
@@ -25,9 +44,20 @@
         android:name="com.example.mad_assignment.client.propertyWishlist"
         android:label="Property Wishlist"
         tools:layout="@layout/fragment_property_wishlist" />
+
     <fragment
         android:id="@+id/propertyProfile"
         android:name="com.example.mad_assignment.client.profile.propertyProfile"
         android:label="Property Profile"
         tools:layout="@layout/fragment_property_profile" />
+    <fragment
+        android:id="@+id/userFeedback"
+        android:name="com.example.mad_assignment.client.profile.userFeedback"
+        android:label="User Feedback"
+        tools:layout="@layout/fragment_user_feedback" />
+    <fragment
+        android:id="@+id/paymentHistory"
+        android:name="com.example.mad_assignment.client.profile.paymentHistory"
+        android:label="Payment History"
+        tools:layout="@layout/fragment_payment_history" />
 </navigation>
