@@ -1,5 +1,6 @@
 package com.example.mad_assignment.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ class propertyDetails : Fragment() {
     private val propertyViewModel: PropertyViewModel by activityViewModels()
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,18 +28,35 @@ class propertyDetails : Fragment() {
 
         return binding.root
     }
+
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val args = propertyDetailsArgs.fromBundle(requireArguments())
         binding.propertyImage.setImageResource(args.propertyImageResId)
         binding.propertyName.text = args.propertyName
+
+        val property = Property(args.propertyName, args.propertyPrice, args.propertyImageResId)
         binding.propertyPrice.text = args.propertyPrice
 
+        if(propertyViewModel.wishlist.value?.contains(property) == true){
+            binding.buttonAddToFavorites.text = "Remove from Favorites"
+        }
+        else{
+            binding.buttonAddToFavorites.text = "Add to Favorites"
+
+        }
+
         binding.buttonAddToFavorites.setOnClickListener {
-            val property = Property(args.propertyName, args.propertyPrice, args.propertyImageResId)
-            propertyViewModel.addToWishlist(property)
-            Toast.makeText(requireContext(), "Added to Wishlist", Toast.LENGTH_SHORT).show()
+            if(propertyViewModel.wishlist.value?.contains(property) == false){
+                context?.let { it1 -> propertyViewModel.addToWishlist(property, it1) }
+                binding.buttonAddToFavorites.text = "Remove from Favorites"
+            }else{
+                context?.let { it1 -> propertyViewModel.removeFromWishlist(property, it1) }
+                binding.buttonAddToFavorites.text = "Add to Favorites"
+            }
+
         }
     }
 

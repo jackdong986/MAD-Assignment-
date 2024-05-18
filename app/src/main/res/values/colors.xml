@@ -7,4 +7,9 @@
     <color name="profileNameColor">#000000</color>
     <color name="profileUserIdColor">#888888</color>
     <color name="buttonBackground">#6200EE</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorPopupBackground">#FFFFFF</color> <!-- Example: White background for popup -->
 </resources>

@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mad_assignment.R
+import com.example.mad_assignment.adapter.ImageSliderAdapter
 import com.example.mad_assignment.databinding.FragmentPropertyHomeBinding
 
 class property_Home : Fragment() {
@@ -22,6 +23,11 @@ class property_Home : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPropertyHomeBinding.inflate(inflater, container, false)
+        val images = listOf(R.drawable.__frontal, R.drawable.frontal2, R.drawable.frontal3)
+
+        // Set up ViewPager2 adapter
+        val imageSliderAdapter = ImageSliderAdapter(images)
+        binding.imageSlider.adapter = imageSliderAdapter
         return binding.root
     }
 
