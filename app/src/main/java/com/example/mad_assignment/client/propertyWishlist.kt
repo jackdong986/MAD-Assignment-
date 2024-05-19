@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mad_assignment.adapter.PropertyAdapter
 import com.example.mad_assignment.databinding.FragmentPropertyWishlistBinding
-import com.example.mad_assignment.main.PropertyAdapter
 import com.example.mad_assignment.viewModel.PropertyViewModel
 
 class propertyWishlist : Fragment() {

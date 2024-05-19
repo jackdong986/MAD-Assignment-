@@ -1,38 +1,222 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/property_image"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:contentDescription="property image"
-        android:scaleType="centerCrop"
-        android:src="@drawable/icon_image_not_found_free_vector" />
-
-    <TextView
-        android:id="@+id/property_name"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Property Name"
-        android:textSize="24sp"
-        android:textColor="@android:color/black" />
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:context=".main.propertyDetails">
 
-    <TextView
-        android:id="@+id/property_price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Price"
-        android:textSize="20sp"
-        android:textColor="@android:color/darker_gray" />
+        <!-- Image Slider (Primary Image) -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-    <Button
-        android:id="@+id/button_add_to_favorites"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+            <ImageView
+                android:id="@+id/property_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="property image"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_image_not_found_free_vector" />
+
+            <!-- Favorite Button -->
+            <Button
+                android:id="@+id/button_add_to_favorites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="12dp"
+                android:text="Add to Favorites"
+                android:textColor="@android:color/black"
+                android:background="@android:color/transparent"
+                tools:ignore="RelativeOverlap" />
+
+            <!-- Rating -->
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/image_rating_star"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Rating star"
+                    android:src="@drawable/star" />
+
+                <TextView
+                    android:id="@+id/text_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.9"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!-- Property Details -->
+        <TextView
+            android:id="@+id/property_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Wings Tower"
+            android:textSize="24sp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/property_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="RM 1080 per month"
+            android:textSize="20sp"
+            android:textColor="@android:color/darker_gray" />
+
+        <!-- Address -->
+        <TextView
+            android:id="@+id/property_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Penang"
+            android:textSize="16sp"
+            android:textColor="@android:color/darker_gray" />
+
+        <!-- City -->
+        <TextView
+            android:id="@+id/property_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Penang"
+            android:textSize="16sp"
+            android:textColor="@android:color/darker_gray" />
+
+        <!-- State -->
+        <TextView
+            android:id="@+id/property_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Malaysia"
+            android:textSize="16sp"
+            android:textColor="@android:color/darker_gray" />
+
+        <!-- Total Bathroom and Bedroom -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/icon_image_not_found_free_vector"
+                    android:contentDescription="Bedroom icon" />
+
+                <TextView
+                    android:id="@+id/property_bedroom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="2 Bedroom"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_marginStart="16dp"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/icon_image_not_found_free_vector"
+                    android:contentDescription="Bathroom icon" />
+
+                <TextView
+                    android:id="@+id/property_bathroom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="1 Bathroom"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/property_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            android:textSize="16sp"
+            android:textColor="@android:color/black" />
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_schedule_viewing"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="Schedule Viewing"
+                android:textSize="16sp"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/button_rent_now"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Rent Now"
+                android:textSize="16sp"
+                android:backgroundTint="@color/colorAccent"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

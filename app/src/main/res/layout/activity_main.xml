@@ -23,7 +23,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp">
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/host"
@@ -50,7 +51,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
-
-    <!-- Main Content -->
 
 </androidx.drawerlayout.widget.DrawerLayout>

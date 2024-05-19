@@ -28,10 +28,40 @@
         <argument
             android:name="propertyImageResId"
             app:argType="integer" />
+        <argument
+            android:name="propertyAddress"
+            app:argType="string" />
+        <argument
+            android:name="propertyCity"
+            app:argType="string" />
+        <argument
+            android:name="propertyState"
+            app:argType="string" />
+        <argument
+            android:name="propertyBathrooms"
+            app:argType="integer" />
+        <argument
+            android:name="propertyBedrooms"
+            app:argType="integer" />
+        <argument
+            android:name="propertyDescription"
+            app:argType="string" />
         <action
             android:id="@+id/action_propertyDetails_to_propertyWishlist"
             app:destination="@id/propertyWishlist" />
     </fragment>
+
+    <fragment
+        android:id="@+id/propertyCheckout"
+        android:name="com.example.mad_assignment.transaction.propertyCheckOut"
+        android:label="Property Checkout"
+        tools:layout="@layout/fragment_property_check_out" />
+
+    <fragment
+        android:id="@+id/makePayment"
+        android:name="com.example.mad_assignment.transaction.makePayment"
+        android:label="Make Payment"
+        tools:layout="@layout/fragment_make_payment" />
 
 
     <fragment

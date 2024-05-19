@@ -5,14 +5,17 @@
     android:orientation="vertical"
     android:padding="8dp">
 
+    <!-- Property Image -->
     <ImageView
         android:id="@+id/property_image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:contentDescription="Property Image"
         android:scaleType="centerCrop"
         android:src="@drawable/baseline_home_24" />
 
+    <!-- Property Name -->
     <TextView
         android:id="@+id/property_name"
         android:layout_width="match_parent"
@@ -22,6 +25,7 @@
         android:textSize="16sp"
         android:textColor="@android:color/black" />
 
+    <!-- Property Price -->
     <TextView
         android:id="@+id/property_price"
         android:layout_width="match_parent"
@@ -31,4 +35,63 @@
         android:textSize="14sp"
         android:textColor="@android:color/darker_gray" />
 
+    <!-- Property Address -->
+    <TextView
+        android:id="@+id/property_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Address"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray" />
+
+    <!-- Property City -->
+    <TextView
+        android:id="@+id/property_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="City"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray" />
+
+    <!-- Property State -->
+    <TextView
+        android:id="@+id/property_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="State"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray" />
+
+    <!-- Total Bedroom -->
+    <TextView
+        android:id="@+id/property_bedroom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Total Bedroom"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray" />
+
+    <!-- Total Bathroom -->
+    <TextView
+        android:id="@+id/property_bathroom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Total Bathroom"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray" />
+
+    <!-- Property Description -->
+    <TextView
+        android:id="@+id/property_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Description"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray" />
 </LinearLayout>
