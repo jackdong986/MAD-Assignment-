@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- button_background_add_to_favorites.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FFC107" /> <!-- Change this color to your preferred color -->
+    <corners android:radius="8dp" /> <!-- Optional: adds rounded corners -->
+</shape>
