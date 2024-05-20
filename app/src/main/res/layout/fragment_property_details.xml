@@ -275,7 +275,7 @@
             android:layout_marginEnd="8dp"
             android:text="Schedule Viewing"
             android:textSize="16sp"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/button"
             android:textColor="@android:color/white" />
 
         <Button

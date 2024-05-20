@@ -73,7 +73,7 @@
                 app:labelBehavior="gone"
                 app:thumbTint="@color/black"
                 app:trackColor="@color/black"
-                app:trackColorActive="@color/black" />
+                app:trackColorActive="@color/black"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
