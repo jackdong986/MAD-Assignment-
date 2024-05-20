@@ -32,6 +32,18 @@ class propertyWishlist : Fragment() {
         passWishlist.wishlist.observe(viewLifecycleOwner) { properties ->
             recyclerView.adapter = PropertyAdapter(properties) { property ->
                 // Handle property click if needed
+                val action = propertyWishlistDirections.actionPropertyWishlistToPropertyDetails(
+                    propertyName = property.propertyName,
+                    propertyPrice = property.propertyPrice,
+                    propertyImage = property.propertyImage,
+                    propertyAddress = property.propertyAddress,
+                    propertyCity = property.propertyCity,
+                    propertyState = property.propertyState,
+                    propertyBathrooms = property.ttlBathrooms,
+                    propertyBedrooms = property.ttlBedrooms,
+                    propertyDescription = property.propertyDescription
+                )
+                nav.navigate(action)
             }
         }
     }

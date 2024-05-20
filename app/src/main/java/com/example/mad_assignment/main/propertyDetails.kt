@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.mad_assignment.R
 import com.example.mad_assignment.databinding.FragmentPropertyDetailsBinding
-import com.example.mad_assignment.viewModel.Property
+import com.example.mad_assignment.viewModel.Property_datatype
 import com.example.mad_assignment.adapter.PassWishlist
 
 class propertyDetails : Fragment() {
@@ -49,7 +49,7 @@ class propertyDetails : Fragment() {
             .error(R.drawable.icon_image_not_found_free_vector)
             .into(binding.propertyImage)
 
-        val property = Property(
+        val propertyDatatype = Property_datatype(
             propertyName = args.propertyName,
             propertyPrice = args.propertyPrice,
             propertyImage = args.propertyImage,
@@ -61,18 +61,18 @@ class propertyDetails : Fragment() {
             propertyDescription = args.propertyDescription
         )
 
-        if (passWishlist.wishlist.value?.contains(property) == true) {
+        if (passWishlist.wishlist.value?.contains(propertyDatatype) == true) {
             binding.buttonAddToFavorites.text = "Remove from Favorites"
         } else {
             binding.buttonAddToFavorites.text = "Add to Favorites"
         }
 
         binding.buttonAddToFavorites.setOnClickListener {
-            if (passWishlist.wishlist.value?.contains(property) == false) {
-                context?.let { passWishlist.addToWishlist(property, it) }
+            if (passWishlist.wishlist.value?.contains(propertyDatatype) == false) {
+                context?.let { passWishlist.addToWishlist(propertyDatatype, it) }
                 binding.buttonAddToFavorites.text = "Remove from Favorites"
             } else {
-                context?.let { passWishlist.removeFromWishlist(property, it) }
+                context?.let { passWishlist.removeFromWishlist(propertyDatatype, it) }
                 binding.buttonAddToFavorites.text = "Add to Favorites"
             }
         }

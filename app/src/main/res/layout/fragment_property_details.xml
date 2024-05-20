@@ -84,7 +84,19 @@
             android:text="Property Name"
             android:textSize="24sp"
             android:textColor="@android:color/black" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
+        <!-- New TextView -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RM"
+            android:layout_marginTop="8dp"
+            android:textSize="20sp"
+            android:textColor="@android:color/darker_gray"/>
         <TextView
             android:id="@+id/property_price"
             android:layout_width="match_parent"
@@ -93,7 +105,21 @@
             android:text="Property Price"
             android:textSize="20sp"
             android:textColor="@android:color/darker_gray" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- New TextView -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address:"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/darker_gray"/>
         <!-- Address -->
         <TextView
             android:id="@+id/property_address"
@@ -103,7 +129,20 @@
             android:text="Property Address"
             android:textSize="16sp"
             android:textColor="@android:color/darker_gray" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="City:"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/darker_gray"/>
         <!-- City -->
         <TextView
             android:id="@+id/property_city"
@@ -113,7 +152,19 @@
             android:text="City"
             android:textSize="16sp"
             android:textColor="@android:color/darker_gray" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="State:"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/darker_gray"/>
         <!-- State -->
         <TextView
             android:id="@+id/property_state"
@@ -123,6 +174,7 @@
             android:text="State"
             android:textSize="16sp"
             android:textColor="@android:color/darker_gray" />
+    </LinearLayout>
 
         <!-- Total Bathroom and Bedroom -->
         <LinearLayout

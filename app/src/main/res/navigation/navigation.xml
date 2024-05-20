@@ -101,7 +101,11 @@
         android:id="@+id/propertyWishlist"
         android:name="com.example.mad_assignment.client.propertyWishlist"
         android:label="Property Wishlist"
-        tools:layout="@layout/fragment_property_wishlist" />
+        tools:layout="@layout/fragment_property_wishlist">
+        <action
+            android:id="@+id/action_propertyWishlist_to_propertyDetails"
+            app:destination="@id/propertyDetails" />
+    </fragment>
 
     <fragment
         android:id="@+id/propertyProfile"
