@@ -8,6 +8,7 @@
     <color name="profilePictureBackground">#CCCCCC</color>
     <color name="profileNameColor">#000000</color>
     <color name="profileUserIdColor">#888888</color>
+    <color name="button">#A0BA</color>
     <color name="buttonBackground">#6200EE</color>
 
     <color name="colorPrimary">#3F51B5</color>
