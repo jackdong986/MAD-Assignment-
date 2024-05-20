@@ -3,6 +3,7 @@ package com.example.mad_assignment.main
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,19 +12,23 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mad_assignment.R
 import com.example.mad_assignment.adapter.ImageSliderAdapter
-import com.example.mad_assignment.adapter.Property
 import com.example.mad_assignment.adapter.PropertyAdapter
 import com.example.mad_assignment.databinding.FragmentPropertyHomeBinding
+import com.example.mad_assignment.viewModel.Property
+import com.google.firebase.firestore.FirebaseFirestore
 
 class property_Home : Fragment() {
     private lateinit var binding: FragmentPropertyHomeBinding
     private val nav by lazy { findNavController() }
 
-    //to set the image slider in 3 seconds
+    // to set the image slider in 3 seconds
     private lateinit var handler: Handler
     private lateinit var runnable: Runnable
     private var currentIndex = 0
     private val slideInterval = 3000L // 3 seconds
+
+    // Firestore instance
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,48 +65,42 @@ class property_Home : Fragment() {
         val recyclerView = binding.recyclerView
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
 
-        val properties = listOf(
-            Property(
-                "Property 1",
-                "$1000/month",
-                R.drawable.property1,
-                "123 Main St",
-                "Any town",
-                "AnyState",
-                2,
-                3,
-                "This cozy property is located in a quiet neighborhood..."
-            ),
-            Property(
-                "Property 2",
-                "$1200/month",
-                R.drawable.__frontal,
-                "456 Elm St",
-                "Other ville",
-                "AnotherState",
-                2,
-                2,
-                "This spacious property features modern amenities..."
-            ),
-            // Add more properties here
-        )
+        // Initialize Firestore
+        firestore = FirebaseFirestore.getInstance()
 
-        val adapter = PropertyAdapter(properties) { property ->
-            val action = property_HomeDirections.actionPropertyHomeToPropertyDetails(
-                propertyName = property.name,
-                propertyPrice = property.price,
-                propertyImageResId = property.imageResId,
-                propertyAddress = property.address,
-                propertyCity = property.city,
-                propertyState = property.state,
-                propertyBathrooms = property.bathrooms,
-                propertyBedrooms = property.bedrooms,
-                propertyDescription = property.description
-            )
-            nav.navigate(action)
-        }
-        recyclerView.adapter = adapter
+        // Fetch data from Firestore
+        fetchProperties()
+    }
+
+    private fun fetchProperties() {
+        firestore.collection("Property")
+            .get()
+            .addOnSuccessListener { result ->
+                val properties = mutableListOf<Property>()
+                for (document in result) {
+                    val property = document.toObject(Property::class.java)
+                    properties.add(property)
+                }
+                val adapter = PropertyAdapter(properties) { property ->
+                    // Handle click on a property item
+                    val action = property_HomeDirections.actionPropertyHomeToPropertyDetails(
+                        propertyName = property.propertyName,
+                        propertyPrice = property.propertyPrice,
+                        propertyImage = property.propertyImage,
+                        propertyAddress = property.propertyAddress,
+                        propertyCity = property.propertyCity,
+                        propertyState = property.propertyState,
+                        propertyBathrooms = property.ttlBathrooms,
+                        propertyBedrooms = property.ttlBedrooms,
+                        propertyDescription = property.propertyDescription
+                    )
+                    nav.navigate(action)
+                }
+                binding.recyclerView.adapter = adapter
+            }
+            .addOnFailureListener { exception ->
+                // Handle possible errors
+                Log.w("Firestore", "Error getting documents.", exception)
+            }
     }
 }
-
-

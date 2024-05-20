@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mad_assignment.adapter.PropertyAdapter
 import com.example.mad_assignment.databinding.FragmentPropertyWishlistBinding
-import com.example.mad_assignment.viewModel.PropertyViewModel
+import com.example.mad_assignment.adapter.PassWishlist
+import com.example.mad_assignment.adapter.PropertyAdapter
 
 class propertyWishlist : Fragment() {
     private lateinit var binding: FragmentPropertyWishlistBinding
     private val nav by lazy{findNavController()}
-    private val propertyViewModel: PropertyViewModel by activityViewModels()
+    private val passWishlist: PassWishlist by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,7 +29,7 @@ class propertyWishlist : Fragment() {
         val recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        propertyViewModel.wishlist.observe(viewLifecycleOwner) { properties ->
+        passWishlist.wishlist.observe(viewLifecycleOwner) { properties ->
             recyclerView.adapter = PropertyAdapter(properties) { property ->
                 // Handle property click if needed
             }

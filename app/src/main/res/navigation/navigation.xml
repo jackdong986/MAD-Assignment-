@@ -12,7 +12,35 @@
         tools:layout="@layout/fragment_property_home" >
     <action
         android:id="@+id/action_propertyHome_to_propertyDetails"
-        app:destination="@id/propertyDetails" />
+        app:destination="@id/propertyDetails" >
+        <argument
+            android:name="propertyName"
+            app:argType="string" />
+        <argument
+            android:name="propertyPrice"
+            app:argType="integer" />
+        <argument
+            android:name="propertyImage"
+            app:argType="string" />
+        <argument
+            android:name="propertyAddress"
+            app:argType="string" />
+        <argument
+            android:name="propertyCity"
+            app:argType="string" />
+        <argument
+            android:name="propertyState"
+            app:argType="string" />
+        <argument
+            android:name="propertyBathrooms"
+            app:argType="integer" />
+        <argument
+            android:name="propertyBedrooms"
+            app:argType="integer" />
+        <argument
+            android:name="propertyDescription"
+            app:argType="string" />
+    </action>
     </fragment>
     <fragment
         android:id="@+id/propertyDetails"
@@ -24,10 +52,10 @@
             app:argType="string" />
         <argument
             android:name="propertyPrice"
-            app:argType="string" />
-        <argument
-            android:name="propertyImageResId"
             app:argType="integer" />
+        <argument
+            android:name="propertyImage"
+            app:argType="string" />
         <argument
             android:name="propertyAddress"
             app:argType="string" />

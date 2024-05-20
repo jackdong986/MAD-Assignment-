@@ -8,25 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.mad_assignment.R
-import com.example.mad_assignment.adapter.Property
 import com.example.mad_assignment.databinding.FragmentPropertyDetailsBinding
-import com.example.mad_assignment.viewModel.PropertyViewModel
+import com.example.mad_assignment.viewModel.Property
+import com.example.mad_assignment.adapter.PassWishlist
 
 class propertyDetails : Fragment() {
 
     private lateinit var binding: FragmentPropertyDetailsBinding
-    private val nav by lazy{findNavController()}
-    private val propertyViewModel: PropertyViewModel by activityViewModels()
-
-
+    private val nav by lazy { findNavController() }
+    private val passWishlist: PassWishlist by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPropertyDetailsBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -36,9 +34,8 @@ class propertyDetails : Fragment() {
 
         val args = propertyDetailsArgs.fromBundle(requireArguments())
 
-        binding.propertyImage.setImageResource(args.propertyImageResId)
         binding.propertyName.text = args.propertyName
-        binding.propertyPrice.text = args.propertyPrice
+        binding.propertyPrice.text = args.propertyPrice.toString()
         binding.propertyAddress.text = args.propertyAddress
         binding.propertyCity.text = args.propertyCity
         binding.propertyState.text = args.propertyState
@@ -46,30 +43,42 @@ class propertyDetails : Fragment() {
         binding.propertyBedroom.text = args.propertyBedrooms.toString()
         binding.propertyDescription.text = args.propertyDescription
 
-        val property = Property(args.propertyName, args.propertyPrice, args.propertyImageResId, args.propertyAddress, args.propertyCity, args.propertyState, args.propertyBathrooms, args.propertyBedrooms, args.propertyDescription)
+        Glide.with(this)
+            .load(args.propertyImage)
+            .placeholder(R.drawable.icon_image_not_found_free_vector)
+            .error(R.drawable.icon_image_not_found_free_vector)
+            .into(binding.propertyImage)
 
-        if(propertyViewModel.wishlist.value?.contains(property) == true){
+        val property = Property(
+            propertyName = args.propertyName,
+            propertyPrice = args.propertyPrice,
+            propertyImage = args.propertyImage,
+            propertyAddress = args.propertyAddress,
+            propertyCity = args.propertyCity,
+            propertyState = args.propertyState,
+            ttlBathrooms = args.propertyBathrooms,
+            ttlBedrooms = args.propertyBedrooms,
+            propertyDescription = args.propertyDescription
+        )
+
+        if (passWishlist.wishlist.value?.contains(property) == true) {
             binding.buttonAddToFavorites.text = "Remove from Favorites"
-        }
-        else{
+        } else {
             binding.buttonAddToFavorites.text = "Add to Favorites"
-
         }
 
         binding.buttonAddToFavorites.setOnClickListener {
-            if(propertyViewModel.wishlist.value?.contains(property) == false){
-                context?.let { it1 -> propertyViewModel.addToWishlist(property, it1) }
+            if (passWishlist.wishlist.value?.contains(property) == false) {
+                context?.let { passWishlist.addToWishlist(property, it) }
                 binding.buttonAddToFavorites.text = "Remove from Favorites"
-            }else{
-                context?.let { it1 -> propertyViewModel.removeFromWishlist(property, it1) }
+            } else {
+                context?.let { passWishlist.removeFromWishlist(property, it) }
                 binding.buttonAddToFavorites.text = "Add to Favorites"
             }
-
         }
 
-        binding.buttonRentNow.setOnClickListener{
+        binding.buttonRentNow.setOnClickListener {
             findNavController().navigate(R.id.propertyCheckout)
         }
     }
-
 }

@@ -1,14 +1,14 @@
-package com.example.mad_assignment.viewModel
+package com.example.mad_assignment.adapter
 
 import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.mad_assignment.adapter.Property
+import com.example.mad_assignment.viewModel.Property
 
 
-class PropertyViewModel : ViewModel() {
+class PassWishlist : ViewModel() {
     private val _wishlist = MutableLiveData<MutableList<Property>>(mutableListOf())
     val wishlist: LiveData<MutableList<Property>> get() = _wishlist
 

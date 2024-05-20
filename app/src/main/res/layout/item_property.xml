@@ -9,8 +9,7 @@
     <ImageView
         android:id="@+id/property_image"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="200dp"
         android:contentDescription="Property Image"
         android:scaleType="centerCrop"
         android:src="@drawable/baseline_home_24" />
@@ -21,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Property Name"
+        android:text=""
         android:textSize="16sp"
         android:textColor="@android:color/black" />
 
@@ -31,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="Price"
+        android:text=""
         android:textSize="14sp"
         android:textColor="@android:color/darker_gray" />
 
@@ -41,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="Address"
+        android:text=""
         android:textSize="14sp"
         android:textColor="@android:color/darker_gray" />
 
@@ -51,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="City"
+        android:text=""
         android:textSize="14sp"
         android:textColor="@android:color/darker_gray" />
 
@@ -61,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="State"
+        android:text=""
         android:textSize="14sp"
         android:textColor="@android:color/darker_gray" />
 
@@ -71,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="Total Bedroom"
+        android:text=""
         android:textSize="14sp"
         android:textColor="@android:color/darker_gray" />
 
@@ -81,7 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="Total Bathroom"
+        android:text=""
         android:textSize="14sp"
         android:textColor="@android:color/darker_gray" />
 
@@ -91,7 +90,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="Description"
+        android:text=""
         android:textSize="14sp"
         android:textColor="@android:color/darker_gray" />
 </LinearLayout>
