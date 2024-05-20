@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_host"
+    app:startDestination="@id/hostDashboardFragment">
+
+    <fragment
+        android:id="@+id/hostDashboardFragment"
+        android:name="com.example.mad_assignment.main.HostDashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_host_dashboard" />
+    <fragment
+        android:id="@+id/propertyHostFragment"
+        android:name="com.example.mad_assignment.main.PropertyHostFragment"
+        android:label="Property"
+        tools:layout="@layout/fragment_property_host" />
+    <fragment
+        android:id="@+id/hostReservationFragment"
+        android:name="com.example.mad_assignment.main.HostReservationFragment"
+        android:label="Reservation"
+        tools:layout="@layout/fragment_host_reservation" />
+    <fragment
+        android:id="@+id/hostProfileFragment"
+        android:name="com.example.mad_assignment.main.HostProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_host_profile" />
+    <fragment
+        android:id="@+id/propertyHostDetailFragment"
+        android:name="com.example.mad_assignment.main.PropertyHostDetailFragment"
+        android:label="fragment_property_host_detail"
+        tools:layout="@layout/fragment_property_host_detail" />
+    <fragment
+        android:id="@+id/propertyHostInsertFragment"
+        android:name="com.example.mad_assignment.main.PropertyHostInsertFragment"
+        android:label="fragment_property_host_insert"
+        tools:layout="@layout/fragment_property_host_insert" />
+</navigation>

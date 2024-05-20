@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="bedroom_options">
+        <item>Bedrooms</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="bathroom_options">
+        <item>Bathrooms</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="states">
+        <item>All</item>
+        <item>Kuala Lumpur</item>
+        <item>Selangor</item>
+        <item>Penang</item>
+        <item>Johor</item>
+        <item>Perak</item>
+        <item>Sarawak</item>
+        <item>Sabah</item>
+        <item>Terengganu</item>
+        <item>Kedah</item>
+        <item>Pahang</item>
+        <item>Malacca</item>
+        <item>Negeri Sembilan</item>
+        <item>Perlis</item>
+        <item>Kelantan</item>
+        <item>Labuan</item>
+    </string-array>
+
+    <string-array name="sort_fields">
+        <item>Name</item>
+        <item>Price</item>
+    </string-array>
+
+</resources>

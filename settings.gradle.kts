@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "mad_assignment"
 include(":app")
+

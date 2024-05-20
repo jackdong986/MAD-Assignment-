@@ -1,4 +1,4 @@
-package com.example.mad_assignment.ui
+package com.example.mad_assignment.transaction
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,14 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.mad_assignment.R
 
-
-class PageB : Fragment() {
+class makePayment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_page_b, container, false)
+        return inflater.inflate(R.layout.fragment_make_payment, container, false)
     }
 }
