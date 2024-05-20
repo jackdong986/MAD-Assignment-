@@ -11,6 +11,8 @@
     <color name="button">#A0BA</color>
     <color name="buttonBackground">#6200EE</color>
 
+    <color name="addButton">#3e4ade</color>
+
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
