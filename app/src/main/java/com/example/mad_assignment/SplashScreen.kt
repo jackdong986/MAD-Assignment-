@@ -17,7 +17,7 @@ class SplashScreen : AppCompatActivity() {
         setContentView(binding.root)
 
         val splashScreenDuration = 2000L // 2 seconds
-//        val mainActivityIntent = Intent(this, MainActivity::class.java)
+        val mainActivityIntent = Intent(this, MainActivity::class.java)
         val hostActivityIntent = Intent(this, HostActivity::class.java)
         val splashScreenRunnable = Runnable {
 //            startActivity(mainActivityIntent)
