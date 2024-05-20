@@ -14,7 +14,7 @@ import com.example.mad_assignment.R
 import com.example.mad_assignment.adapter.ImageSliderAdapter
 import com.example.mad_assignment.adapter.PropertyAdapter
 import com.example.mad_assignment.databinding.FragmentPropertyHomeBinding
-import com.example.mad_assignment.viewModel.Property
+import com.example.mad_assignment.viewModel.Property_datatype
 import com.google.firebase.firestore.FirebaseFirestore
 
 class property_Home : Fragment() {
@@ -76,10 +76,10 @@ class property_Home : Fragment() {
         firestore.collection("Property")
             .get()
             .addOnSuccessListener { result ->
-                val properties = mutableListOf<Property>()
+                val properties = mutableListOf<Property_datatype>()
                 for (document in result) {
-                    val property = document.toObject(Property::class.java)
-                    properties.add(property)
+                    val propertyDatatype = document.toObject(Property_datatype::class.java)
+                    properties.add(propertyDatatype)
                 }
                 val adapter = PropertyAdapter(properties) { property ->
                     // Handle click on a property item

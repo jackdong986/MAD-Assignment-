@@ -1,6 +1,6 @@
 package com.example.mad_assignment.viewModel
 
-data class Property(
+data class Property_datatype(
     var documentId: String = "",
     val propertyName: String = "",
     val propertyPrice: Int = 0,
