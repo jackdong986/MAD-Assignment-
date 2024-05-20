@@ -28,7 +28,7 @@ class PropertyHostAdapter(
 
         holder.binding.propertyName.text = property.propertyName
         holder.binding.propertyPrice.text = property.propertyPrice.toString()
-        holder.binding.propertyCategory.text = property.propertyState
+        holder.binding.propertyState.text = property.propertyState
         holder.binding.propertyImage.setImageBlob(property.propertyImage)
 
         fn(holder, property)

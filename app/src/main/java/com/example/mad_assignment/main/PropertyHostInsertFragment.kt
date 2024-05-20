@@ -10,58 +10,30 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mad_assignment.R
 import com.example.mad_assignment.databinding.FragmentPropertyHostDetailBinding
+import com.example.mad_assignment.databinding.FragmentPropertyHostInsertBinding
 import com.example.mad_assignment.util.cropToBlob
 import com.example.mad_assignment.util.setImageBlob
 import com.example.mad_assignment.viewModel.Property
 import com.example.mad_assignment.viewModel.PropertyVM
 
 
-class PropertyHostDetailFragment : Fragment() {
-    private lateinit var binding: FragmentPropertyHostDetailBinding
+class PropertyHostInsertFragment : Fragment() {
+
+    private lateinit var binding: FragmentPropertyHostInsertBinding
     private val nav by lazy { findNavController() }
-    private val propertyId by lazy { arguments?.getString("propertyId") ?: "" }
 
     private val propertyVM: PropertyVM by activityViewModels()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
-        binding = FragmentPropertyHostDetailBinding.inflate(inflater, container, false)
+        binding = FragmentPropertyHostInsertBinding.inflate(inflater, container, false)
 
         reset()
         binding.imgProperty.setOnClickListener { select() }
-        binding.btnUpdateProperty.setOnClickListener{ update() }
-        binding.btnDeleteProperty.setOnClickListener{ delete() }
+        binding.btnSubmitProperty.setOnClickListener{ submit() }
+        binding.btnResetProperty.setOnClickListener{ reset() }
 
-        val property = propertyVM.get(propertyId)
-        if (property == null) {
-            nav.navigateUp()
-            return null
-        }
 
         return binding.root
     }
-
-    private fun reset() {
-        val property = propertyVM.get(propertyId)
-        if (property == null) {
-            nav.navigateUp()
-            return
-        }
-
-        binding.txtID.text = property.id
-        binding.edtPropertyName.setText(property.propertyName)
-        binding.edtPropertyPrice.setText(property.propertyPrice.toString())
-        binding.imgProperty.setImageBlob(property.propertyImage)
-        binding.edtAddress.setText(property.propertyAddress)
-        binding.edtCity.setText(property.propertyCity)
-        binding.edtState.setText(property.propertyState)
-        binding.edtTTLBathroom.setText(property.ttlBathrooms.toString())
-        binding.edtTTLBedroom.setText(property.ttlBedrooms.toString())
-        binding.edtDescription.setText(property.propertyDescription)
-
-        binding.edtPropertyName.requestFocus()
-
-
-    }
-
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) {
         binding.imgProperty.setImageURI(it)
     }
@@ -71,10 +43,30 @@ class PropertyHostDetailFragment : Fragment() {
         getContent.launch("image/*")
     }
 
-    private fun update() {
+    private fun reset() {
+
+        binding.edtPropertyID.text.clear()
+        binding.edtPropertyName.text.clear()
+        binding.edtPropertyPrice.text.clear()
+        binding.imgProperty.setImageDrawable(null)
+        binding.edtAddress.text.clear()
+        binding.edtCity.text.clear()
+        binding.edtState.text.clear()
+        binding.edtTTLBathroom.text.clear()
+        binding.edtTTLBedroom.text.clear()
+        binding.edtDescription.text.clear()
+
+        binding.edtPropertyName.requestFocus()
+
+
+    }
+
+
+
+    private fun submit() {
 
         val p = Property(
-            id = binding.txtID.text.toString().trim(),
+            id = binding.edtPropertyID.text.toString().trim(),
             propertyName = binding.edtPropertyName.text.toString().trim(),
             propertyPrice = binding.edtPropertyPrice.text.toString().toDoubleOrNull() ?: 0.0,
             propertyImage = binding.imgProperty.cropToBlob(300, 300),
@@ -95,12 +87,6 @@ class PropertyHostDetailFragment : Fragment() {
         propertyVM.set(p)
         nav.navigateUp()
     }
-
-    private fun delete() {
-        propertyVM.delete(propertyId)
-        nav.navigateUp()
-    }
-
 
 
 }

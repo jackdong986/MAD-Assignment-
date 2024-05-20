@@ -14,8 +14,7 @@ class PropertyVM: ViewModel() {
     init {
         listener = PROPERTIES.addSnapshotListener { snap, _ ->
             propertyLD.value = snap?.toObjects()
-            Log.d("PropertyVM", "Data fetched: ${propertyLD.value}") // Add logging here
-//            updateResult()
+            updateResult()
         }
     }
 
@@ -33,25 +32,53 @@ class PropertyVM: ViewModel() {
 
     fun getAll(hostId: String) = getAll().filter { it.hostId == hostId }
 
+    fun delete(id: String) {
+        PROPERTIES.document(id).delete()
+    }
+
+    fun set(p: Property) {
+        PROPERTIES.document(p.id).set(p)
+    }
+
     private val resultLD = MutableLiveData<List<Property>>()
     private var name = ""
+    private var state = ""
+    private var sortField = ""
 
-//    fun getResultLD() = resultLD
-//
-//    fun search(name: String) {
-//        this.name = name
-////        updateResult()
-//    }
-//
-//    fun updateResult() {
-//        var list = getAll()
-//
-//        list = list.filter {
-//            it.propertyName.contains(name, ignoreCase = true)
-//        }
-//
-//        resultLD.value = list
-//    }
+    fun getResultLD() = resultLD
+
+    fun search(name: String) {
+        this.name = name
+        updateResult()
+    }
+
+    fun filter(state: String) {
+        this.state = state
+        updateResult()
+    }
+
+    fun sort(field: String) {
+        this.sortField = field
+        updateResult()
+    }
+
+
+    fun updateResult() {
+        var list = getAll()
+
+        list = list.filter {
+            it.propertyName.contains(name, ignoreCase = true) && (state == "All" || it.propertyState == state)
+        }
+
+        list = when (sortField) {
+            "Name" -> list.sortedBy { it.propertyName }
+            "Price" -> list.sortedBy { it.propertyPrice }
+            else -> list
+        }
+
+
+        resultLD.value = list
+    }
 
 
 }

@@ -25,4 +25,14 @@
         android:name="com.example.mad_assignment.main.HostProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_host_profile" />
+    <fragment
+        android:id="@+id/propertyHostDetailFragment"
+        android:name="com.example.mad_assignment.main.PropertyHostDetailFragment"
+        android:label="fragment_property_host_detail"
+        tools:layout="@layout/fragment_property_host_detail" />
+    <fragment
+        android:id="@+id/propertyHostInsertFragment"
+        android:name="com.example.mad_assignment.main.PropertyHostInsertFragment"
+        android:label="fragment_property_host_insert"
+        tools:layout="@layout/fragment_property_host_insert" />
 </navigation>

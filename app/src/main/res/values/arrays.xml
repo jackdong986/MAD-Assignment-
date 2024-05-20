@@ -19,6 +19,7 @@
     </string-array>
 
     <string-array name="states">
+        <item>All</item>
         <item>Kuala Lumpur</item>
         <item>Selangor</item>
         <item>Penang</item>
