@@ -52,7 +52,7 @@ class PropertyHostInsertFragment : Fragment() {
         binding.imgPropertyInsert.setImageDrawable(null)
         binding.edtAddress.text.clear()
         binding.edtCity.text.clear()
-        binding.edtState.text.clear()
+        binding.spnStateInsert.setSelection(0)
         binding.edtTTLBathroom.text.clear()
         binding.edtTTLBedroom.text.clear()
         binding.edtDescription.text.clear()
@@ -73,7 +73,7 @@ class PropertyHostInsertFragment : Fragment() {
             propertyImage = binding.imgPropertyInsert.cropToBlob(300, 300),
             propertyAddress = binding.edtAddress.text.toString().trim(),
             propertyCity = binding.edtCity.text.toString().trim(),
-            propertyState = binding.edtState.text.toString().trim(),
+            propertyState = binding.spnStateInsert.selectedItem.toString(),
             ttlBathrooms = binding.ttlHostBathroom.text.toString().toIntOrNull() ?: 0,
             ttlBedrooms = binding.ttlHostBedroom.text.toString().toIntOrNull() ?: 0,
             propertyDescription = binding.edtDescription.text.toString().trim()
