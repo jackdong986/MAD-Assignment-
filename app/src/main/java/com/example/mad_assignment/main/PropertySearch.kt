@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mad_assignment.R
 import com.example.mad_assignment.databinding.FragmentPropertySearchBinding
 import com.example.mad_assignment.adapter.PropertyAdapter
-import com.example.mad_assignment.viewModel.Property_datatype
+import com.example.mad_assignment.viewModel.Property
 import com.google.firebase.firestore.FirebaseFirestore
 
 class propertySearch : Fragment() {
@@ -23,8 +23,8 @@ class propertySearch : Fragment() {
     private val nav by lazy { findNavController() }
     private lateinit var propertyAdapter: PropertyAdapter
     private val db = FirebaseFirestore.getInstance()
-    private var properties: List<Property_datatype> = listOf()
-    private var filteredProperties: List<Property_datatype> = listOf()
+    private var properties: List<Property> = listOf()
+    private var filteredProperties: List<Property> = listOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -82,10 +82,10 @@ class propertySearch : Fragment() {
     }
 
     private fun fetchProperties() {
-        db.collection("Property")
+        db.collection("properties")
             .get()
             .addOnSuccessListener { result ->
-                properties = result.documents.mapNotNull { it.toObject(Property_datatype::class.java) }
+                properties = result.documents.mapNotNull { it.toObject(Property::class.java) }
                 filterProperties()
             }
             .addOnFailureListener { exception ->

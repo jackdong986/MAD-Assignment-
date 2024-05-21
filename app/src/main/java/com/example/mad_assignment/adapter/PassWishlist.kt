@@ -5,15 +5,15 @@ import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.mad_assignment.viewModel.Property_datatype
+import com.example.mad_assignment.viewModel.Property
 
 
 class PassWishlist : ViewModel() {
-    private val _wishlist = MutableLiveData<MutableList<Property_datatype>>(mutableListOf())
-    val wishlist: LiveData<MutableList<Property_datatype>> get() = _wishlist
+    private val _wishlist = MutableLiveData<MutableList<Property>>(mutableListOf())
+    val wishlist: LiveData<MutableList<Property>> get() = _wishlist
 
 
-    fun addToWishlist(propertyDatatype: Property_datatype, context: Context) {
+    fun addToWishlist(propertyDatatype: Property, context: Context) {
         if (_wishlist.value?.contains(propertyDatatype) == true)
         {
             Toast.makeText(context, "This property is already in your wishlist", Toast.LENGTH_SHORT).show()
@@ -26,7 +26,7 @@ class PassWishlist : ViewModel() {
         }
     }
 
-    fun removeFromWishlist(propertyDatatype: Property_datatype, context: Context) {
+    fun removeFromWishlist(propertyDatatype: Property, context: Context) {
         if (_wishlist.value?.contains(propertyDatatype) == true)
         {
             _wishlist.value?.remove(propertyDatatype)

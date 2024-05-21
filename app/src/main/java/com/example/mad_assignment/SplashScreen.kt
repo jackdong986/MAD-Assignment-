@@ -20,8 +20,8 @@ class SplashScreen : AppCompatActivity() {
         val mainActivityIntent = Intent(this, MainActivity::class.java)
         val hostActivityIntent = Intent(this, HostActivity::class.java)
         val splashScreenRunnable = Runnable {
-//            startActivity(mainActivityIntent)
-            startActivity(hostActivityIntent)
+            startActivity(mainActivityIntent)
+            //startActivity(hostActivityIntent)
             finish()
         }
         // Schedule the splash screen to finish after a delay
