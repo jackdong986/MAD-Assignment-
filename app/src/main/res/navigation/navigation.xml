@@ -14,6 +14,9 @@
         android:id="@+id/action_propertyHome_to_propertyDetails"
         app:destination="@id/propertyDetails" >
         <argument
+            android:name="id"
+            app:argType="string" />
+        <argument
             android:name="propertyName"
             app:argType="string" />
         <argument
@@ -39,6 +42,9 @@
             app:argType="integer" />
         <argument
             android:name="propertyDescription"
+            app:argType="string" />
+        <argument
+            android:name="hostId"
             app:argType="string" />
     </action>
     </fragment>
@@ -48,6 +54,9 @@
         android:label="Property Details"
         tools:layout="@layout/fragment_property_details">
         <argument
+            android:name="id"
+            app:argType="string" />
+        <argument
             android:name="propertyName"
             app:argType="string" />
         <argument
@@ -73,6 +82,9 @@
             app:argType="integer" />
         <argument
             android:name="propertyDescription"
+            app:argType="string" />
+        <argument
+            android:name="hostId"
             app:argType="string" />
         <action
             android:id="@+id/action_propertyDetails_to_propertyWishlist"

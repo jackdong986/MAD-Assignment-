@@ -66,9 +66,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="Image"
-            app:layout_constraintBottom_toBottomOf="@+id/imgProperty"
+            app:layout_constraintBottom_toBottomOf="@+id/imgPropertyInsert"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imgProperty" />
+            app:layout_constraintTop_toTopOf="@+id/imgPropertyInsert" />
 
         <TextView
             android:id="@+id/propertyHostCity"
@@ -86,9 +86,9 @@
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
             android:text="State"
-            app:layout_constraintBottom_toBottomOf="@+id/edtState"
+            app:layout_constraintBottom_toBottomOf="@+id/spnStateInsert"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/edtState" />
+            app:layout_constraintTop_toTopOf="@+id/spnStateInsert" />
 
         <TextView
             android:id="@+id/ttlHostBathroom"
@@ -143,17 +143,6 @@
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/edtPropertyName" />
 
-        <ImageView
-            android:id="@+id/imgProperty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:background="#ccc"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/edtPropertyPrice"
-            tools:src="@tools:sample/avatars" />
-
         <EditText
             android:id="@+id/edtAddress"
             android:layout_width="wrap_content"
@@ -164,7 +153,7 @@
             android:inputType="text"
             android:text="Name"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/imgProperty" />
+            app:layout_constraintTop_toBottomOf="@+id/imgPropertyInsert" />
 
         <EditText
             android:id="@+id/edtCity"
@@ -179,18 +168,6 @@
             app:layout_constraintTop_toBottomOf="@+id/edtAddress" />
 
         <EditText
-            android:id="@+id/edtState"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Name"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/edtCity" />
-
-        <EditText
             android:id="@+id/edtTTLBathroom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -199,7 +176,7 @@
             android:ems="10"
             android:inputType="number"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/edtState" />
+            app:layout_constraintTop_toBottomOf="@+id/spnStateInsert" />
 
         <EditText
             android:id="@+id/edtTTLBedroom"
@@ -254,6 +231,28 @@
             android:text="Name"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgPropertyInsert"
+            android:layout_width="127dp"
+            android:layout_height="118dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/icon_image_not_found_free_vector"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_image_not_found_free_vector"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/edtPropertyPrice" />
+
+        <Spinner
+            android:id="@+id/spnStateInsert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:entries="@array/states_updates"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/edtCity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

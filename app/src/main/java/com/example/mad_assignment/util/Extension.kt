@@ -3,6 +3,7 @@ package com.example.mad_assignment.util
 import android.app.AlertDialog
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Base64
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
@@ -117,3 +118,4 @@ fun ImageView.cropToBlob(width: Int, height: Int): Blob {
 fun ImageView.setImageBlob(blob: Blob) {
     setImageBitmap(blob.toBitmap())
 }
+
