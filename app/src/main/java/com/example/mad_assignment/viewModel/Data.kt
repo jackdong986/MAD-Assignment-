@@ -46,6 +46,7 @@ data class Renting(
     var totalAmount: Double = 0.0,
     var propertyId: String = "",
     var hostId: String = "",
+    var custId: String = "",
     var paymentStatus: String = "" //Success, Failed
 )
 
@@ -71,11 +72,11 @@ fun RESTORE(ctx: Context){
 
 
     val renting = listOf(
-        Renting("R001", 19.00 ,1, 19.00*1, "P001", "H001", "Success"),
-        Renting("R002", 109.00 ,2, 109.00*2, "P002", "H001", "Success"),
-        Renting("R003", 119.00 , 3, 119.00*3, "P003", "H001", "Success"),
-        Renting("R004", 29.00 , 4, 29.00*4, "P004", "H001", "Success"),
-        Renting("R005", 9.00 , 5, 9.00*4, "P005", "H001", "Success"),
+        Renting("R001", 19.00 ,1, 19.00*1, "P001", "H001","C001", "Success"),
+        Renting("R002", 109.00 ,2, 109.00*2, "P002", "H001", "C001", "Success"),
+        Renting("R003", 119.00 , 3, 119.00*3, "P003", "H001", "C001", "Success"),
+        Renting("R004", 29.00 , 4, 29.00*4, "P004", "H001", "C001", "Success"),
+        Renting("R005", 9.00 , 5, 9.00*4, "P005", "H001", "C001", "Success"),
     )
 
     renting.forEach(){
