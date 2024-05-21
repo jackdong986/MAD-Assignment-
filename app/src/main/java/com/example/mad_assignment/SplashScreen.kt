@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class SplashScreen : AppCompatActivity() {
     private lateinit var binding: ActivitySplashScreenBinding
-//    private lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,23 +18,23 @@ class SplashScreen : AppCompatActivity() {
         setContentView(binding.root)
 
         // Initialize Firebase Auth
-//        auth = FirebaseAuth.getInstance()
+        auth = FirebaseAuth.getInstance()
 
         val splashScreenDuration = 2000L // 2 seconds
         val hostActivityIntent = Intent(this, HostActivity::class.java)
         val splashScreenRunnable = Runnable {
-//            val currentUser = auth.currentUser
-//            if (currentUser != null) {
-//                // User is logged in, navigate to MainActivity
-//                val mainActivityIntent = Intent(this, MainActivity::class.java)
-//                startActivity(mainActivityIntent)
-//            } else {
-//                // No user is logged in, navigate to LoginActivity
-//                val loginIntent = Intent(this, accManagement::class.java)
-//                startActivity(loginIntent)
-//            }
+            val currentUser = auth.currentUser
+            if (currentUser != null) {
+                // User is logged in, navigate to MainActivity
+                val mainActivityIntent = Intent(this, MainActivity::class.java)
+                startActivity(mainActivityIntent)
+            } else {
+                // No user is logged in, navigate to LoginActivity
+                val loginIntent = Intent(this, accManagement::class.java)
+                startActivity(loginIntent)
+            }
 
-            startActivity(hostActivityIntent)
+            //startActivity(hostActivityIntent)
             finish()
         }
         // Schedule the splash screen to finish after a delay

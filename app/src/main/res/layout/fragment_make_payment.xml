@@ -5,10 +5,33 @@
     android:layout_height="match_parent"
     tools:context=".transaction.makePayment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="makepayment" />
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/button_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Success" />
+
+        <Button
+            android:id="@+id/button_failed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Failed"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/text_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginTop="32dp"
+            android:textSize="18sp" />
+    </LinearLayout>
 
 </FrameLayout>

@@ -104,7 +104,20 @@ class propertyDetails : Fragment() {
         }
 
         binding.buttonRentNow.setOnClickListener {
-            findNavController().navigate(R.id.propertyCheckout)
+            val action = propertyDetailsDirections.actionPropertyDetailsToPropertyCheckout(
+                id = propertyId,
+                propertyName = propertyName,
+                propertyPrice = propertyPrice.toInt(),
+                propertyImage = propertyImageBytes.toString(),
+                propertyAddress = propertyAddress,
+                propertyCity = propertyCity,
+                propertyState = propertyState,
+                propertyBathrooms = propertyBathrooms,
+                propertyBedrooms = propertyBedrooms,
+                propertyDescription = propertyDescription,
+                hostId = hostId
+            )
+            nav.navigate(action)
         }
     }
 }
