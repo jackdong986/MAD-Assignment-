@@ -38,10 +38,9 @@ class RentingHostAdapter(
             if (document != null) {
                 val property = document.toObject(Property::class.java)
                 if (property != null) {
-                    // Set property image, name, and address
+                    // Set property image, and name
                     holder.binding.imgPropertyRenting.setImageBlob(property.propertyImage)
                     holder.binding.rentingPropertyName.text = property.propertyName
-                    holder.binding.rentingPropertyAddress.text = property.propertyAddress
                 }
             }
         }

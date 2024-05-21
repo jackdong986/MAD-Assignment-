@@ -35,5 +35,10 @@
         android:name="com.example.mad_assignment.main.PropertyHostInsertFragment"
         android:label="fragment_property_host_insert"
         tools:layout="@layout/fragment_property_host_insert" />
+    <fragment
+        android:id="@+id/hostRentingDetailFragment"
+        android:name="com.example.mad_assignment.main.HostRentingDetailFragment"
+        android:label="fragment_host_renting_detail"
+        tools:layout="@layout/fragment_host_renting_detail" />
 
 </navigation>
