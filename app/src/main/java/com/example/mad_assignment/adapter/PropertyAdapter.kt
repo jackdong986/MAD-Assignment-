@@ -9,11 +9,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mad_assignment.R
-import com.example.mad_assignment.viewModel.Property_datatype
+import com.example.mad_assignment.viewModel.Property
 
 class PropertyAdapter(
-    private var properties: List<Property_datatype>,
-    private val onClick: (Property_datatype) -> Unit
+    private var properties: List<Property>,
+    private val onClick: (Property) -> Unit
 ) : RecyclerView.Adapter<PropertyAdapter.PropertyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PropertyViewHolder {
@@ -28,7 +28,7 @@ class PropertyAdapter(
     override fun getItemCount(): Int = properties.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateProperties(newProperties: List<Property_datatype>) {
+    fun updateProperties(newProperties: List<Property>) {
         properties = newProperties
         notifyDataSetChanged()
     }
@@ -38,12 +38,12 @@ class PropertyAdapter(
         private val propertyName: TextView = itemView.findViewById(R.id.property_name)
         private val propertyPrice: TextView = itemView.findViewById(R.id.property_price)
 
-        fun bind(propertyDatatype: Property_datatype) {
+        fun bind(propertyDatatype: Property) {
             propertyName.text = propertyDatatype.propertyName
             propertyPrice.text = propertyDatatype.propertyPrice.toString()
-            // Load image using Glide or another image loading library
+
             Glide.with(itemView.context)
-                .load(propertyDatatype.propertyImage)
+                .load(propertyDatatype.propertyImage.toBytes())
                 .placeholder(R.drawable.icon_image_not_found_free_vector)
                 .error(R.drawable.icon_image_not_found_free_vector)
                 .into(propertyImage)

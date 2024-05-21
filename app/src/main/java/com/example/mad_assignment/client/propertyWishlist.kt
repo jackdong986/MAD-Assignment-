@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mad_assignment.databinding.FragmentPropertyWishlistBinding
 import com.example.mad_assignment.adapter.PassWishlist
 import com.example.mad_assignment.adapter.PropertyAdapter
+import com.example.mad_assignment.util.toBitmap
 
 class propertyWishlist : Fragment() {
     private lateinit var binding: FragmentPropertyWishlistBinding
@@ -34,8 +35,8 @@ class propertyWishlist : Fragment() {
                 // Handle property click if needed
                 val action = propertyWishlistDirections.actionPropertyWishlistToPropertyDetails(
                     propertyName = property.propertyName,
-                    propertyPrice = property.propertyPrice,
-                    propertyImage = property.propertyImage,
+                    propertyPrice = property.propertyPrice.toInt(),
+                    propertyImage = property.propertyImage.toBytes().toString(),
                     propertyAddress = property.propertyAddress,
                     propertyCity = property.propertyCity,
                     propertyState = property.propertyState,

@@ -14,7 +14,8 @@ import com.example.mad_assignment.R
 import com.example.mad_assignment.adapter.ImageSliderAdapter
 import com.example.mad_assignment.adapter.PropertyAdapter
 import com.example.mad_assignment.databinding.FragmentPropertyHomeBinding
-import com.example.mad_assignment.viewModel.Property_datatype
+import com.example.mad_assignment.util.toBitmap
+import com.example.mad_assignment.viewModel.Property
 import com.google.firebase.firestore.FirebaseFirestore
 
 class property_Home : Fragment() {
@@ -73,20 +74,19 @@ class property_Home : Fragment() {
     }
 
     private fun fetchProperties() {
-        firestore.collection("Property")
+        firestore.collection("properties")
             .get()
             .addOnSuccessListener { result ->
-                val properties = mutableListOf<Property_datatype>()
+                val properties = mutableListOf<Property>()
                 for (document in result) {
-                    val propertyDatatype = document.toObject(Property_datatype::class.java)
-                    properties.add(propertyDatatype)
+                    val property = document.toObject(Property::class.java)
+                    properties.add(property)
                 }
                 val adapter = PropertyAdapter(properties) { property ->
-                    // Handle click on a property item
                     val action = property_HomeDirections.actionPropertyHomeToPropertyDetails(
                         propertyName = property.propertyName,
-                        propertyPrice = property.propertyPrice,
-                        propertyImage = property.propertyImage,
+                        propertyPrice = property.propertyPrice.toInt(),
+                        propertyImage = property.propertyImage.toBytes().toString(),
                         propertyAddress = property.propertyAddress,
                         propertyCity = property.propertyCity,
                         propertyState = property.propertyState,
@@ -103,4 +103,5 @@ class property_Home : Fragment() {
                 Log.w("Firestore", "Error getting documents.", exception)
             }
     }
+
 }

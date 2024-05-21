@@ -1,6 +1,7 @@
 package com.example.mad_assignment.main
 
 import android.annotation.SuppressLint
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,8 +12,9 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.mad_assignment.R
 import com.example.mad_assignment.databinding.FragmentPropertyDetailsBinding
-import com.example.mad_assignment.viewModel.Property_datatype
 import com.example.mad_assignment.adapter.PassWishlist
+import com.example.mad_assignment.viewModel.Property
+import com.google.firebase.firestore.Blob
 
 class propertyDetails : Fragment() {
 
@@ -32,33 +34,35 @@ class propertyDetails : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val args = propertyDetailsArgs.fromBundle(requireArguments())
+        // Retrieve arguments
+        val propertyName = propertyDetailsArgs.fromBundle(requireArguments()).propertyName
+        val propertyPrice = propertyDetailsArgs.fromBundle(requireArguments()).propertyPrice.toDouble()
+        val propertyAddress = propertyDetailsArgs.fromBundle(requireArguments()).propertyAddress
+        val propertyCity = propertyDetailsArgs.fromBundle(requireArguments()).propertyCity
+        val propertyState = propertyDetailsArgs.fromBundle(requireArguments()).propertyState
+        val propertyBathrooms = propertyDetailsArgs.fromBundle(requireArguments()).propertyBathrooms
+        val propertyBedrooms = propertyDetailsArgs.fromBundle(requireArguments()).propertyBedrooms
+        val propertyDescription = propertyDetailsArgs.fromBundle(requireArguments()).propertyDescription
 
-        binding.propertyName.text = args.propertyName
-        binding.propertyPrice.text = args.propertyPrice.toString()
-        binding.propertyAddress.text = args.propertyAddress
-        binding.propertyCity.text = args.propertyCity
-        binding.propertyState.text = args.propertyState
-        binding.propertyBathroom.text = args.propertyBathrooms.toString()
-        binding.propertyBedroom.text = args.propertyBedrooms.toString()
-        binding.propertyDescription.text = args.propertyDescription
-
-        Glide.with(this)
-            .load(args.propertyImage)
+        // Load propertyImage using Glide
+        val propertyImage = Blob.fromBytes(propertyDetailsArgs.fromBundle(requireArguments()).propertyImage.toByteArray())
+        Glide.with(requireContext())
+            .load(propertyImage)
             .placeholder(R.drawable.icon_image_not_found_free_vector)
             .error(R.drawable.icon_image_not_found_free_vector)
             .into(binding.propertyImage)
 
-        val propertyDatatype = Property_datatype(
-            propertyName = args.propertyName,
-            propertyPrice = args.propertyPrice,
-            propertyImage = args.propertyImage,
-            propertyAddress = args.propertyAddress,
-            propertyCity = args.propertyCity,
-            propertyState = args.propertyState,
-            ttlBathrooms = args.propertyBathrooms,
-            ttlBedrooms = args.propertyBedrooms,
-            propertyDescription = args.propertyDescription
+
+        val propertyDatatype = Property(
+            propertyName = propertyName,
+            propertyPrice = propertyPrice,
+            propertyImage = propertyImage,
+            propertyAddress = propertyAddress,
+            propertyCity = propertyCity,
+            propertyState = propertyState,
+            ttlBathrooms = propertyBathrooms,
+            ttlBedrooms = propertyBedrooms,
+            propertyDescription = propertyDescription
         )
 
         if (passWishlist.wishlist.value?.contains(propertyDatatype) == true) {
