@@ -75,6 +75,7 @@ class property_Home : Fragment() {
 
     @OptIn(ExperimentalEncodingApi::class)
     private fun fetchProperties() {
+
         firestore.collection("properties")
             .get()
             .addOnSuccessListener { result ->
@@ -105,6 +106,7 @@ class property_Home : Fragment() {
                 // Handle possible errors
                 Log.w("Firestore", "Error getting documents.", exception)
             }
+
     }
 
 }

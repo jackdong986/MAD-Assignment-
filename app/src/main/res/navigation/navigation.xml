@@ -108,7 +108,11 @@
         android:id="@+id/propertySearch"
         android:name="com.example.mad_assignment.main.propertySearch"
         android:label="Property Search"
-        tools:layout="@layout/fragment_property_search" />
+        tools:layout="@layout/fragment_property_search" >
+        <action
+            android:id="@+id/action_propertySearch_to_propertyDetails"
+            app:destination="@id/propertyDetails" />
+    </fragment>
     <fragment
         android:id="@+id/propertyWishlist"
         android:name="com.example.mad_assignment.client.propertyWishlist"

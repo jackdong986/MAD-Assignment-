@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mad_assignment.R
 import com.example.mad_assignment.databinding.FragmentPropertySearchBinding
 import com.example.mad_assignment.adapter.PropertyAdapter
+import com.example.mad_assignment.client.propertyWishlistDirections
 import com.example.mad_assignment.viewModel.Property
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -39,7 +40,20 @@ class propertySearch : Fragment() {
 
         // Initialize RecyclerView
         propertyAdapter = PropertyAdapter(filteredProperties) { property ->
-            // Handle property click if needed
+            val action = propertySearchDirections.actionPropertySearchToPropertyDetails(
+                id = property.id,
+                propertyName = property.propertyName,
+                propertyPrice = property.propertyPrice.toInt(),
+                propertyImage = property.propertyImage.toBytes().toString(),
+                propertyAddress = property.propertyAddress,
+                propertyCity = property.propertyCity,
+                propertyState = property.propertyState,
+                propertyBathrooms = property.ttlBathrooms,
+                propertyBedrooms = property.ttlBedrooms,
+                propertyDescription = property.propertyDescription,
+                hostId = property.hostId
+            )
+            findNavController().navigate(action)
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = propertyAdapter

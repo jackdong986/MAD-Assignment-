@@ -53,16 +53,18 @@ data class Renting(
     var propertyId: String = "",
     var hostId: String = "",
     var custId: String = "",
-    var paymentStatus: String = "" //Success, Failed
+    var paymentStatus: String = "" ,//Success, Failed, Pending
+    val dateFormat: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
 )
 
-data class Customer(
+data class Feedback(
     @DocumentId
-    var custId: String = "",
-    var password: String = "",
-    var custName: String = "",
-    var custEmail: String = ""
+    val name: String = "",
+    val email: String = "",
+    val rating: Float = 0f,
+    val feedback: String = ""
 )
+
 
 val HOSTS = Firebase.firestore.collection("hosts")
 val PROPERTIES = Firebase.firestore.collection("properties")
