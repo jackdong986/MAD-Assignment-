@@ -34,6 +34,7 @@ class propertyWishlist : Fragment() {
             recyclerView.adapter = PropertyAdapter(properties) { property ->
                 // Handle property click if needed
                 val action = propertyWishlistDirections.actionPropertyWishlistToPropertyDetails(
+                    id = property.id,
                     propertyName = property.propertyName,
                     propertyPrice = property.propertyPrice.toInt(),
                     propertyImage = property.propertyImage.toBytes().toString(),
@@ -42,7 +43,8 @@ class propertyWishlist : Fragment() {
                     propertyState = property.propertyState,
                     propertyBathrooms = property.ttlBathrooms,
                     propertyBedrooms = property.ttlBedrooms,
-                    propertyDescription = property.propertyDescription
+                    propertyDescription = property.propertyDescription,
+                    hostId = property.hostId
                 )
                 nav.navigate(action)
             }

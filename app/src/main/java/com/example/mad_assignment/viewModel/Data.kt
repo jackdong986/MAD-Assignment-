@@ -50,6 +50,14 @@ data class Renting(
     var paymentStatus: String = "" //Success, Failed
 )
 
+data class Customer(
+    @DocumentId
+    var custId: String = "",
+    var password: String = "",
+    var custName: String = "",
+    var custEmail: String = ""
+)
+
 val HOSTS = Firebase.firestore.collection("hosts")
 val PROPERTIES = Firebase.firestore.collection("properties")
 val RENTING = Firebase.firestore.collection("renting")
