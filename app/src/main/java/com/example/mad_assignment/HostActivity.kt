@@ -27,7 +27,7 @@ class HostActivity : AppCompatActivity() {
             setOf(
                 R.id.hostDashboardFragment,
                 R.id.propertyHostFragment,
-                R.id.hostReservationFragment,
+                R.id.hostRentingFragment,
                 R.id.hostProfileFragment,
             )
         )

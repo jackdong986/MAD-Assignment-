@@ -10,9 +10,9 @@
         android:icon="@drawable/baseline_house_24"
         android:title="Property" />
     <item
-        android:id="@+id/hostReservationFragment"
+        android:id="@+id/hostRentingFragment"
         android:icon="@drawable/baseline_history_24"
-        android:title="Reservation" />
+        android:title="Renting" />
     <item
         android:id="@+id/hostProfileFragment"
         android:icon="@drawable/baseline_person_24"
