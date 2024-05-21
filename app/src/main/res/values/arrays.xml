@@ -42,4 +42,22 @@
         <item>Price</item>
     </string-array>
 
+    <string-array name="states_updates">
+        <item>Kuala Lumpur</item>
+        <item>Selangor</item>
+        <item>Penang</item>
+        <item>Johor</item>
+        <item>Perak</item>
+        <item>Sarawak</item>
+        <item>Sabah</item>
+        <item>Terengganu</item>
+        <item>Kedah</item>
+        <item>Pahang</item>
+        <item>Malacca</item>
+        <item>Negeri Sembilan</item>
+        <item>Perlis</item>
+        <item>Kelantan</item>
+        <item>Labuan</item>
+    </string-array>
+
 </resources>

@@ -46,13 +46,25 @@ class PropertyHostDetailFragment : Fragment() {
             return
         }
 
+
+
+
         binding.txtID.text = property.id
         binding.edtPropertyName.setText(property.propertyName)
         binding.edtPropertyPrice.setText(property.propertyPrice.toString())
         binding.imgProperty.setImageBlob(property.propertyImage)
         binding.edtAddress.setText(property.propertyAddress)
         binding.edtCity.setText(property.propertyCity)
-        binding.edtState.setText(property.propertyState)
+
+        val propertyState = property.propertyState
+        val statesArray = resources.getStringArray(R.array.states_updates)
+        val stateIndex = statesArray.indexOfFirst { it == propertyState }
+
+        if(stateIndex !=-1){
+            binding.spnStateUpdate.setSelection(stateIndex)
+        } else {
+            binding.spnStateUpdate.setSelection(0)
+        }
         binding.edtTTLBathroom.setText(property.ttlBathrooms.toString())
         binding.edtTTLBedroom.setText(property.ttlBedrooms.toString())
         binding.edtDescription.setText(property.propertyDescription)
@@ -80,7 +92,7 @@ class PropertyHostDetailFragment : Fragment() {
             propertyImage = binding.imgProperty.cropToBlob(300, 300),
             propertyAddress = binding.edtAddress.text.toString().trim(),
             propertyCity = binding.edtCity.text.toString().trim(),
-            propertyState = binding.edtState.text.toString().trim(),
+            propertyState = binding.spnStateUpdate.selectedItem.toString(),
             ttlBathrooms = binding.ttlHostBathroom.text.toString().toIntOrNull() ?: 0,
             ttlBedrooms = binding.ttlHostBedroom.text.toString().toIntOrNull() ?: 0,
             propertyDescription = binding.edtDescription.text.toString().trim()

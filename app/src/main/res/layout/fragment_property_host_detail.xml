@@ -80,15 +80,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/edtCity" />
 
-    <TextView
-        android:id="@+id/propertyHostState"
-        android:layout_width="60dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:text="State"
-        app:layout_constraintBottom_toBottomOf="@+id/edtState"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/edtState" />
+        <TextView
+            android:id="@+id/propertyHostState"
+            android:layout_width="60dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:text="State"
+            app:layout_constraintBottom_toBottomOf="@+id/spnStateUpdate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/spnStateUpdate" />
 
     <TextView
         android:id="@+id/ttlHostBathroom"
@@ -178,18 +178,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/edtAddress" />
 
-    <EditText
-        android:id="@+id/edtState"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/edtCity" />
-
         <EditText
             android:id="@+id/edtTTLBathroom"
             android:layout_width="wrap_content"
@@ -199,7 +187,7 @@
             android:ems="10"
             android:inputType="number"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/edtState" />
+            app:layout_constraintTop_toBottomOf="@+id/spnStateUpdate" />
 
     <EditText
         android:id="@+id/edtTTLBedroom"
@@ -252,6 +240,16 @@
         android:text="TextView"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/spnStateUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:entries="@array/states_updates"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/edtCity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -27,7 +27,7 @@ class PropertyHostInsertFragment : Fragment() {
         binding = FragmentPropertyHostInsertBinding.inflate(inflater, container, false)
 
         reset()
-        binding.imgProperty.setOnClickListener { select() }
+        binding.imgPropertyInsert.setOnClickListener { select() }
         binding.btnSubmitProperty.setOnClickListener{ submit() }
         binding.btnResetProperty.setOnClickListener{ reset() }
 
@@ -35,7 +35,7 @@ class PropertyHostInsertFragment : Fragment() {
         return binding.root
     }
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) {
-        binding.imgProperty.setImageURI(it)
+        binding.imgPropertyInsert.setImageURI(it)
     }
 
     private fun select() {
@@ -45,13 +45,14 @@ class PropertyHostInsertFragment : Fragment() {
 
     private fun reset() {
 
+        //TODO: Auto generate ID
         binding.edtPropertyID.text.clear()
         binding.edtPropertyName.text.clear()
         binding.edtPropertyPrice.text.clear()
-        binding.imgProperty.setImageDrawable(null)
+        binding.imgPropertyInsert.setImageDrawable(null)
         binding.edtAddress.text.clear()
         binding.edtCity.text.clear()
-        binding.edtState.text.clear()
+        binding.spnStateInsert.setSelection(0)
         binding.edtTTLBathroom.text.clear()
         binding.edtTTLBedroom.text.clear()
         binding.edtDescription.text.clear()
@@ -69,10 +70,10 @@ class PropertyHostInsertFragment : Fragment() {
             id = binding.edtPropertyID.text.toString().trim(),
             propertyName = binding.edtPropertyName.text.toString().trim(),
             propertyPrice = binding.edtPropertyPrice.text.toString().toDoubleOrNull() ?: 0.0,
-            propertyImage = binding.imgProperty.cropToBlob(300, 300),
+            propertyImage = binding.imgPropertyInsert.cropToBlob(300, 300),
             propertyAddress = binding.edtAddress.text.toString().trim(),
             propertyCity = binding.edtCity.text.toString().trim(),
-            propertyState = binding.edtState.text.toString().trim(),
+            propertyState = binding.spnStateInsert.selectedItem.toString(),
             ttlBathrooms = binding.ttlHostBathroom.text.toString().toIntOrNull() ?: 0,
             ttlBedrooms = binding.ttlHostBedroom.text.toString().toIntOrNull() ?: 0,
             propertyDescription = binding.edtDescription.text.toString().trim()
