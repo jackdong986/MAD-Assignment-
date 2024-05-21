@@ -37,7 +37,7 @@ class accManagement : AppCompatActivity() {
 
     @Deprecated("This method has been deprecated in favor of using the\n      {@link OnBackPressedDispatcher} via {@link #getOnBackPressedDispatcher()}.\n      The OnBackPressedDispatcher controls how back button events are dispatched\n      to one or more {@link OnBackPressedCallback} objects.")
     override fun onBackPressed() {
-        if (nav.currentDestination?.id == R.id.property_Home) {
+        if (nav.currentDestination?.id == R.id.login) {
             val builder = AlertDialog.Builder(this)
             builder.setMessage("Are you sure you want to exit?")
                 .setCancelable(false)
