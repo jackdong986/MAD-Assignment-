@@ -13,7 +13,6 @@ import com.google.firebase.firestore.firestore
 data class Host(
     @DocumentId
     var id: String = "",
-    var password: String = "",
     var hostName: String = "",
     var hostEmail: String = "",
     var hostPhone: String = "",
