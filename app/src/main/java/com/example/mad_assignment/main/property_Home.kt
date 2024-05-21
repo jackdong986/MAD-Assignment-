@@ -14,9 +14,9 @@ import com.example.mad_assignment.R
 import com.example.mad_assignment.adapter.ImageSliderAdapter
 import com.example.mad_assignment.adapter.PropertyAdapter
 import com.example.mad_assignment.databinding.FragmentPropertyHomeBinding
-import com.example.mad_assignment.util.toBitmap
 import com.example.mad_assignment.viewModel.Property
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlin.io.encoding.ExperimentalEncodingApi
 
 class property_Home : Fragment() {
     private lateinit var binding: FragmentPropertyHomeBinding
@@ -73,6 +73,7 @@ class property_Home : Fragment() {
         fetchProperties()
     }
 
+    @OptIn(ExperimentalEncodingApi::class)
     private fun fetchProperties() {
         firestore.collection("properties")
             .get()
@@ -84,6 +85,7 @@ class property_Home : Fragment() {
                 }
                 val adapter = PropertyAdapter(properties) { property ->
                     val action = property_HomeDirections.actionPropertyHomeToPropertyDetails(
+                        id = property.id,
                         propertyName = property.propertyName,
                         propertyPrice = property.propertyPrice.toInt(),
                         propertyImage = property.propertyImage.toBytes().toString(),
@@ -92,7 +94,8 @@ class property_Home : Fragment() {
                         propertyState = property.propertyState,
                         propertyBathrooms = property.ttlBathrooms,
                         propertyBedrooms = property.ttlBedrooms,
-                        propertyDescription = property.propertyDescription
+                        propertyDescription = property.propertyDescription,
+                        hostId = property.hostId
                     )
                     nav.navigate(action)
                 }
