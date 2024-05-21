@@ -20,7 +20,6 @@ data class Host(
     var id: String = "",
     var hostName: String = "",
     var hostEmail: String = "",
-    var hostPhone: String = "",
     var hostImage: Blob = Blob.fromBytes(ByteArray(0))
 )
 
