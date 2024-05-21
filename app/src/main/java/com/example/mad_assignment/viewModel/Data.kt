@@ -41,6 +41,7 @@ data class Property(
 data class Renting(
     @DocumentId
     var id: String = "",
+    var propertyAmount : Double = 0.0,
     var totalMonth: Int = 0,
     var totalAmount: Double = 0.0,
     var propertyId: String = "",
@@ -68,12 +69,13 @@ fun RESTORE(ctx: Context){
         PROPERTIES.document(it.id).set(it)
     }
 
+
     val renting = listOf(
-        Renting("R001", 1, 19.00, "P001", "H001", "Success"),
-        Renting("R002", 1, 109.00, "P002", "H001", "Success"),
-        Renting("R003", 1, 119.00, "P003", "H001", "Success"),
-        Renting("R004", 1, 29.00, "P004", "H001", "Success"),
-        Renting("R005", 1, 9.00, "P005", "H001", "Success"),
+        Renting("R001", 19.00 ,1, 19.00*1, "P001", "H001", "Success"),
+        Renting("R002", 109.00 ,2, 109.00*2, "P002", "H001", "Success"),
+        Renting("R003", 119.00 , 3, 119.00*3, "P003", "H001", "Success"),
+        Renting("R004", 29.00 , 4, 29.00*4, "P004", "H001", "Success"),
+        Renting("R005", 9.00 , 5, 9.00*4, "P005", "H001", "Success"),
     )
 
     renting.forEach(){
