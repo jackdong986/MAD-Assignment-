@@ -1,12 +1,15 @@
 package com.example.mad_assignment.main
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -102,6 +105,25 @@ class propertyDetails : Fragment() {
                 binding.buttonAddToFavorites.text = "Add to Favorites"
             }
         }
+
+        binding.buttonScheduleViewing.setOnClickListener {
+            val phoneNumber = "+601123180903"  // Replace with the WhatsApp number you want to message
+
+            // Create intent to open WhatsApp
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("https://wa.me/$phoneNumber")
+
+            // Check if WhatsApp is installed
+            context?.packageManager?.let { pm ->
+                if (intent.resolveActivity(pm) != null) {
+                    startActivity(intent)
+                } else {
+                    // WhatsApp not installed, handle error or show message
+                    Toast.makeText(requireContext(), "WhatsApp not installed", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
 
         binding.buttonRentNow.setOnClickListener {
             val action = propertyDetailsDirections.actionPropertyDetailsToPropertyCheckout(

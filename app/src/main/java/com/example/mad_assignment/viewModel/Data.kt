@@ -2,6 +2,7 @@ package com.example.mad_assignment.viewModel
 
 import android.content.Context
 import android.graphics.BitmapFactory
+import android.os.Parcelable
 import androidx.core.content.ContextCompat.getString
 import com.example.mad_assignment.R
 import com.example.mad_assignment.util.toBlob

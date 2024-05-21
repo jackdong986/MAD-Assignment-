@@ -141,8 +141,7 @@
         android:id="@+id/makePayment"
         android:name="com.example.mad_assignment.transaction.makePayment"
         android:label="Make Payment"
-        tools:layout="@layout/fragment_make_payment" >
-    </fragment>
+        tools:layout="@layout/fragment_make_payment" />
 
 
     <fragment
