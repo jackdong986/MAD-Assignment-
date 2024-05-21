@@ -24,7 +24,7 @@ data class Property(
     @DocumentId
     var id: String = "",
     var propertyName: String = "",
-    var propertyPrice: Double = 0.0,
+    var propertyPrice: Double = 0.0, //Per month
     var propertyImage: Blob = Blob.fromBytes(ByteArray(0)),
     var propertyAddress: String = "",
     var propertyCity: String = "",
@@ -38,8 +38,19 @@ data class Property(
     var host: Host = Host()
 }
 
+data class Renting(
+    @DocumentId
+    var id: String = "",
+    var totalMonth: Int = 0,
+    var totalAmount: Double = 0.0,
+    var propertyId: String = "",
+    var hostId: String = "",
+    var paymentStatus: String = "" //Success, Failed
+)
+
 val HOSTS = Firebase.firestore.collection("hosts")
 val PROPERTIES = Firebase.firestore.collection("properties")
+val RENTING = Firebase.firestore.collection("renting")
 
 fun RESTORE(ctx: Context){
     fun getBlob(res: Int) = BitmapFactory.decodeResource(ctx.resources, res).toBlob()
@@ -55,6 +66,18 @@ fun RESTORE(ctx: Context){
 
     properties.forEach(){
         PROPERTIES.document(it.id).set(it)
+    }
+
+    val renting = listOf(
+        Renting("R001", 1, 19.00, "P001", "H001", "Success"),
+        Renting("R002", 1, 109.00, "P002", "H001", "Success"),
+        Renting("R003", 1, 119.00, "P003", "H001", "Success"),
+        Renting("R004", 1, 29.00, "P004", "H001", "Success"),
+        Renting("R005", 1, 9.00, "P005", "H001", "Success"),
+    )
+
+    renting.forEach(){
+        RENTING.document(it.id).set(it)
     }
 
 }
