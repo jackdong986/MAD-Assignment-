@@ -7,19 +7,31 @@
     android:layout_height="match_parent"
     tools:context=".accountHost.HostLoginFragment" >
 
+    <TextView
+        android:id="@+id/lblLoginForHost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Login as Host"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/editTextHostEmailAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/lblLoginForHost" />
 
     <EditText
         android:id="@+id/editTextHostPassword"
@@ -55,7 +67,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:text="Register"
+        android:text="Don't have account. Register?"
         app:cornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,4 +85,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnHostRegister" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
