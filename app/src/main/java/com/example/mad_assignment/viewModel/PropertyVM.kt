@@ -83,8 +83,10 @@ class PropertyVM: ViewModel() {
         }
 
         list = when (sortField) {
-            "Name" -> list.sortedBy { it.propertyName }
-            "Price" -> list.sortedBy { it.propertyPrice }
+            "Name⬆️" -> list.sortedBy { it.propertyName }
+            "Name⬇️" -> list.sortedByDescending { it.propertyName }
+            "Price⬆️" -> list.sortedBy { it.propertyPrice }
+            "Price⬇️" -> list.sortedByDescending { it.propertyPrice }
             else -> list
         }
 

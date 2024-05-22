@@ -55,7 +55,7 @@ class HostRentingFragment : Fragment() {
         binding.sortRentingHost.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val field = binding.sortRentingHost.selectedItem.toString()
-                rentingVM.sort(field, true)
+                rentingVM.sort(field)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) = Unit

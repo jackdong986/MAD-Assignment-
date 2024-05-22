@@ -54,9 +54,8 @@ class RentingVM: ViewModel() {
         updateResult()
     }
 
-    fun sort(field: String, reverse: Boolean) {
+    fun sort(field: String) {
         this.field = field
-//        this.reverse = reverse
         updateResult()
     }
 
@@ -71,11 +70,12 @@ class RentingVM: ViewModel() {
         list = list.filter { it.id.contains(rentingID, ignoreCase = true)  &&
                 (paymentStatus == "All" || it.paymentStatus == paymentStatus) }
 
-        //sort by createdAt or total Amount
-        if (field == "Created At") {
-            list = list.sortedBy { it.createdAt }
-        } else if (field == "Total Amount") {
-            list = list.sortedBy { it.totalAmount }
+        list = when (field) {
+            "Created At⬆️" -> list.sortedBy { it.createdAt }
+            "Created At⬇️" -> list.sortedByDescending { it.createdAt }
+            "Total Amount⬆️" -> list.sortedBy { it.totalAmount }
+            "Total Amount⬇️" -> list.sortedByDescending { it.totalAmount }
+            else -> list
         }
 
         resultLD.value = list
