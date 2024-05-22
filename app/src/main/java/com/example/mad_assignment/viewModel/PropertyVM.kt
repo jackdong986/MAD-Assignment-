@@ -44,6 +44,7 @@ class PropertyVM: ViewModel() {
     private var name = ""
     private var state = ""
     private var sortField = ""
+    private var hostId = ""
 
     fun getResultLD() = resultLD
 
@@ -62,9 +63,14 @@ class PropertyVM: ViewModel() {
         updateResult()
     }
 
+    fun setHostId(hostId: String) {
+        this.hostId = hostId
+        updateResult()
+    }
+
 
     fun updateResult() {
-        var list = getAll()
+        var list = getAll(hostId)
 
         list = list.filter {
             it.propertyName.contains(name, ignoreCase = true) && (state == "All" || it.propertyState == state)
