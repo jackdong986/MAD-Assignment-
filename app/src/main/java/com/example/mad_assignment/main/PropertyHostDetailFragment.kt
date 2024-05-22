@@ -11,9 +11,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.mad_assignment.R
 import com.example.mad_assignment.databinding.FragmentPropertyHostDetailBinding
 import com.example.mad_assignment.util.cropToBlob
+import com.example.mad_assignment.util.errorDialog
 import com.example.mad_assignment.util.setImageBlob
 import com.example.mad_assignment.viewModel.Property
 import com.example.mad_assignment.viewModel.PropertyVM
+import com.google.firebase.auth.FirebaseAuth
 
 
 class PropertyHostDetailFragment : Fragment() {
@@ -22,6 +24,7 @@ class PropertyHostDetailFragment : Fragment() {
     private val propertyId by lazy { arguments?.getString("propertyId") ?: "" }
 
     private val propertyVM: PropertyVM by activityViewModels()
+    private val auth by lazy { FirebaseAuth.getInstance() }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         binding = FragmentPropertyHostDetailBinding.inflate(inflater, container, false)
 
@@ -83,23 +86,32 @@ class PropertyHostDetailFragment : Fragment() {
 
     private fun update() {
 
+        val userId = auth.currentUser?.uid
+
+        if (userId == null) {
+            errorDialog("User not authenticated")
+            return
+        }
+
         val p = Property(
+            id = propertyId,
             propertyName = binding.edtPropertyName.text.toString().trim(),
             propertyPrice = binding.edtPropertyPrice.text.toString().toDoubleOrNull() ?: 0.0,
             propertyImage = binding.imgProperty.cropToBlob(300, 300),
             propertyAddress = binding.edtAddress.text.toString().trim(),
             propertyCity = binding.edtCity.text.toString().trim(),
             propertyState = binding.spnStateUpdate.selectedItem.toString(),
-            ttlBathrooms = binding.ttlHostBathroom.text.toString().toIntOrNull() ?: 0,
-            ttlBedrooms = binding.ttlHostBedroom.text.toString().toIntOrNull() ?: 0,
-            propertyDescription = binding.edtDescription.text.toString().trim()
+            ttlBathrooms = binding.edtTTLBathroom.text.toString().toIntOrNull() ?: 0,
+            ttlBedrooms = binding.edtTTLBedroom.text.toString().toIntOrNull() ?: 0,
+            propertyDescription = binding.edtDescription.text.toString().trim(),
+            hostId = userId
         )
 
-//        val e = propertyVM.validate(p)
-//        if (e != "") {
-//            errorDialog(e)
-//            return
-//        }
+        val e = propertyVM.validate(p,false)
+        if (e != "") {
+            errorDialog(e)
+            return
+        }
 
         propertyVM.set(p)
         nav.navigateUp()

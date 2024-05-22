@@ -94,13 +94,19 @@ class PropertyVM: ViewModel() {
         resultLD.value = list
     }
 
-    fun validate(p: Property): String {
+    fun validate(p: Property, insert: Boolean = true): String {
         var errorMsg = ""
 
-        if (p.propertyName == "") errorMsg += "- Name is required.\n"
-        else if (p.propertyName.length < 3) errorMsg += "- Name is too short (at least 3 letters).\n"
+        if(insert){
+            if (p.propertyName == "") errorMsg += "- Name is required.\n"
+            else if (p.propertyName.length < 3) errorMsg += "- Name is too short (at least 3 letters).\n"
+            else if (p.propertyName.length > 100) errorMsg += "- Name is too long (at most 100 letters).\n"
+            else if (getAll().any { it.propertyName == p.propertyName }) errorMsg += "- Name is duplicated.\n"
+        }
+
+        if (p.propertyName.length < 3) errorMsg += "- Name is too short (at least 3 letters).\n"
         else if (p.propertyName.length > 100) errorMsg += "- Name is too long (at most 100 letters).\n"
-        else if (getAll().any { it.propertyName == p.propertyName }) errorMsg += "- Name is duplicated.\n"
+
 
         if (p.propertyPrice == 0.0) errorMsg += "- Price is required.\n"
         else if (p.propertyPrice < 0) errorMsg += "- Price is invalid.\n"
