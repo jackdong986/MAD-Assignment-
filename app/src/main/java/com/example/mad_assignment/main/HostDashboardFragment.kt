@@ -44,7 +44,7 @@ class HostDashboardFragment : Fragment() {
     ): View? {
         binding = FragmentHostDashboardBinding.inflate(inflater, container, false)
 
-        binding.restore.setOnClickListener { restore() }
+//        binding.restore.setOnClickListener { restore() }
 
         val auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
