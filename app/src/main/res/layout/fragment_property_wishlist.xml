@@ -5,22 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".client.propertyWishlist">
+    android:padding="16dp"
+    tools:context=".client.PropertyWishlist">
 
     <!-- Title TextView -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Wishlist"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
-        android:padding="16dp"
         android:textColor="@color/black" />
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
 
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="8dp"
+        android:clipToPadding="false" />
+
+    <!-- Empty State TextView -->
+    <TextView
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your wishlist is empty."
+        android:textSize="18sp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:padding="16dp"
+        android:textColor="@android:color/darker_gray" />
+
+    <!-- Floating Action Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_property"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:contentDescription="Add property"
+        android:src="@drawable/baseline_add_24"
+        android:tint="@android:color/white" />
 
 </LinearLayout>

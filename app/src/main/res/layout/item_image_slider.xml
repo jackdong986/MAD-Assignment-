@@ -2,14 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="8dp">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="395dp"
+        android:layout_height="200dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/image_background"
         android:contentDescription="Image Slider"
         android:scaleType="centerCrop"
         android:src="@drawable/icon_image_not_found_free_vector" />
 
+    <!-- Dots indicator for the image slider -->
+    <LinearLayout
+        android:id="@+id/dotsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="8dp">
+
+        <!-- Example dot. Duplicate this view for multiple dots -->
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/active_dot"
+            android:contentDescription="activeDot" />
+
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/inactive_dot"
+            android:contentDescription="inactiveDot" />
+    </LinearLayout>
 </LinearLayout>

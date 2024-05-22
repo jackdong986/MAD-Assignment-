@@ -46,33 +46,6 @@
 
 
             <!-- Rating -->
-            <LinearLayout
-                android:id="@+id/linearLayout3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="16dp"
-                android:orientation="horizontal"
-                android:padding="8dp">
-
-                <ImageView
-                    android:id="@+id/image_rating_star"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="8dp"
-                    android:contentDescription="Rating star"
-                    android:src="@drawable/star" />
-
-                <TextView
-                    android:id="@+id/text_rating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="4.9"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
         </RelativeLayout>
 
         <!-- Property Details -->
@@ -244,68 +217,6 @@
             android:text="Property Description"
             android:textSize="16sp"
             android:textColor="@android:color/black" />
-
-        <!-- Reviews and Ratings -->
-        <TextView
-            android:id="@+id/text_reviews_heading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Reviews"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp" />
-
-        <!-- Review 1 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="8dp">
-
-            <TextView
-                android:id="@+id/text_review_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Review 1"
-                android:textSize="16sp" />
-
-            <RatingBar
-                android:id="@+id/rating_bar_review_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:numStars="5"
-                android:rating="4.5"
-                android:stepSize="0.5" />
-
-        </LinearLayout>
-
-        <!-- Review 2 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="8dp">
-
-            <TextView
-                android:id="@+id/text_review_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Review 2"
-                android:textSize="16sp" />
-
-            <RatingBar
-                android:id="@+id/rating_bar_review_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:numStars="5"
-                android:rating="3.5"
-                android:stepSize="0.5" />
-
-        </LinearLayout>
-
-
 
     </LinearLayout>
 </ScrollView>

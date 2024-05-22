@@ -30,7 +30,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.userFeedback,
                 R.id.paymentHistory,
                 R.id.propertyCheckout,
-                R.id.makePayment
+                R.id.makePayment,
+                R.id.imageView
             ),
             binding.root
         )
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.userFeedback,
                 R.id.propertyDetails,
                 R.id.propertyCheckout,
+                R.id.imageView,
                 R.id.makePayment,
                 R.id.paymentHistory -> binding.bv.visibility = View.GONE
                 else -> binding.bv.visibility = View.VISIBLE

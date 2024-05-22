@@ -1,77 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <!-- Search and Filter Section -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="267dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="16dp">
 
         <!-- Search Properties -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:paddingBottom="8dp"
             android:text="Search Properties"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <SearchView
-            android:id="@+id/search_view"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:iconifiedByDefault="false"
-            android:queryHint="Search properties" />
+            android:orientation="horizontal"
+            android:paddingBottom="16dp"
+            android:gravity="center_vertical">
+
+            <SearchView
+                android:id="@+id/search_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:iconifiedByDefault="false"
+                android:queryHint="Search properties" />
+
+            <Button
+                android:id="@+id/search_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
 
         <!-- Filter Section -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:gravity="center_vertical"
+            android:paddingBottom="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Filter by"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:layout_marginEnd="16dp" />
 
             <Spinner
                 android:id="@+id/spinner_bedrooms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:spinnerMode="dropdown" />
 
             <Spinner
                 android:id="@+id/spinner_bathrooms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:spinnerMode="dropdown" />
-
-            <Button
-                android:id="@+id/filter_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="🔍" />
 
         </LinearLayout>
     </LinearLayout>
+
+    <!-- Search Results Title -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search Results"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingBottom="8dp" />
 
     <!-- RecyclerView Section -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="569dp"
+        android:layout_height="646dp"
         android:padding="8dp"
         tools:listitem="@layout/item_property" />
 

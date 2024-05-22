@@ -38,7 +38,6 @@ class propertyDetails : Fragment() {
         return binding.root
     }
 
-    @OptIn(ExperimentalEncodingApi::class)
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -90,21 +89,22 @@ class propertyDetails : Fragment() {
             hostId = hostId
         )
 
-        if (passWishlist.wishlist.value?.contains(propertyDatatype) == true) {
-            binding.buttonAddToFavorites.text = "Remove from Favorites"
-        } else {
-            binding.buttonAddToFavorites.text = "Add to Favorites"
-        }
-
-        binding.buttonAddToFavorites.setOnClickListener {
-            if (passWishlist.wishlist.value?.contains(propertyDatatype) == false) {
-                context?.let { passWishlist.addToWishlist(propertyDatatype, it) }
+        passWishlist.wishlist.observe(viewLifecycleOwner) { wishlist ->
+            if (wishlist.contains(propertyDatatype)) {
                 binding.buttonAddToFavorites.text = "Remove from Favorites"
             } else {
-                context?.let { passWishlist.removeFromWishlist(propertyDatatype, it) }
                 binding.buttonAddToFavorites.text = "Add to Favorites"
             }
         }
+
+        binding.buttonAddToFavorites.setOnClickListener {
+            if (passWishlist.wishlist.value?.contains(propertyDatatype) == true) {
+                context?.let { ctx -> passWishlist.removeFromWishlist(propertyDatatype, ctx) }
+            } else {
+                context?.let { ctx -> passWishlist.addToWishlist(propertyDatatype, ctx) }
+            }
+        }
+
 
         binding.buttonScheduleViewing.setOnClickListener {
             val phoneNumber = "+601123180903"  // Replace with the WhatsApp number you want to message

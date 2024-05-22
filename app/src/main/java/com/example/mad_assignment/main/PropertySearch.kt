@@ -79,7 +79,7 @@ class propertySearch : Fragment() {
         })
 
         // Setup Filter Button
-        binding.filterButton.setOnClickListener {
+        binding.searchButton.setOnClickListener {
             filterProperties()
         }
     }

@@ -36,10 +36,14 @@ class property_Home : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPropertyHomeBinding.inflate(inflater, container, false)
-        val images = listOf(R.drawable.__frontal, R.drawable.frontal2, R.drawable.frontal3)
+        val images = listOf(R.drawable.slideshow1, R.drawable.slideshow2, R.drawable.slideshow3)
 
-        // Set up ViewPager2 adapter
-        val imageSliderAdapter = ImageSliderAdapter(images)
+        // Set up ViewPager2 adapter with click handling
+        val imageSliderAdapter = ImageSliderAdapter(images) { imageResId ->
+            // Handle image click here, for example, navigate to a new fragment
+            val action = property_HomeDirections.actionPropertyHomeToImageViewFragment(imageResId)
+            nav.navigate(action)
+        }
         binding.imageSlider.adapter = imageSliderAdapter
 
         // Initialize Handler and Runnable
