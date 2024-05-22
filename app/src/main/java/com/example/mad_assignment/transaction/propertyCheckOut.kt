@@ -8,15 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.TextView
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.mad_assignment.R
 import com.example.mad_assignment.databinding.FragmentPropertyCheckOutBinding
-import com.example.mad_assignment.viewModel.Renting
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
 import java.util.Locale
 
 class propertyCheckOut : Fragment() {
@@ -78,10 +75,8 @@ class propertyCheckOut : Fragment() {
 
         // Set up listener for the next button
         binding.nextButton.setOnClickListener {
-            if (validateDates()) {
-                val rentingData = prepareRentingData()
-                navigateToMakePayment(rentingData)
-            }
+            calculateTotalAmount()
+            findNavController().navigate(R.id.makePayment)
         }
     }
 
@@ -121,48 +116,5 @@ class propertyCheckOut : Fragment() {
         val endYear = endDate.get(Calendar.YEAR)
         val endMonth = endDate.get(Calendar.MONTH)
         return (endYear - startYear) * 12 + (endMonth - startMonth) + 1
-    }
-
-    private fun validateDates(): Boolean {
-        val startDateStr = binding.startDate.text.toString()
-        val endDateStr = binding.endDate.text.toString()
-
-        if (startDateStr.isEmpty() || endDateStr.isEmpty()) {
-            Toast.makeText(requireContext(), "Please select start and end dates", Toast.LENGTH_SHORT).show()
-            return false
-        }
-
-        // Perform additional date validation if needed
-        // Example: Ensure endDate is after startDate
-
-        return true
-    }
-
-    private fun prepareRentingData(): Renting {
-        val months = calculateMonthDifference(startDate, endDate)
-        val totalAmount = months * propertyPricePerMonth
-        val args = propertyCheckOutArgs.fromBundle(requireArguments())
-        val hostId = args.hostId
-        val propertyId = args.id
-
-        // Prepare Renting object
-        return Renting(
-            propertyAmount = propertyPricePerMonth,
-            rentingStartDate = startDate.time,
-            rentingEndDate = endDate.time,
-            totalMonth = months,
-            totalAmount = totalAmount,
-            propertyId = propertyId,
-            hostId = hostId,
-            custId = "customer_id_here", // Replace with actual customer ID
-            paymentStatus = "Pending",// Initial payment status
-            createdAt = Date()
-
-        )
-    }
-
-    private fun navigateToMakePayment(rentingData: Renting) {
-        val action = propertyCheckOutDirections.actionPropertyCheckoutToMakePayment2(rentingData)
-        findNavController().navigate(action)
     }
 }

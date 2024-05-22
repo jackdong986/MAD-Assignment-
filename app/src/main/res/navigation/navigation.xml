@@ -139,22 +139,13 @@
         <action
             android:id="@+id/action_propertyCheckout_to_propertyDetails"
             app:destination="@id/propertyDetails" />
-        <action
-            android:id="@+id/actionPropertyCheckoutToMakePayment2"
-            app:destination="@id/makePayment" />
     </fragment>
 
     <fragment
         android:id="@+id/makePayment"
         android:name="com.example.mad_assignment.transaction.makePayment"
         android:label="Make Payment"
-        tools:layout="@layout/fragment_make_payment" >
-        <argument
-            android:name="rentingData"
-            app:argType="com.example.mad_assignment.viewModel.Renting" />
-    </fragment>
-
-
+        tools:layout="@layout/fragment_make_payment" />
 
     <fragment
         android:id="@+id/propertySearch"
