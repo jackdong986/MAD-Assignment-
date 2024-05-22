@@ -20,17 +20,7 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="122dp" />
 
-    <TextView
-        android:id="@+id/propertyId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="ID"
-        app:layout_constraintBottom_toBottomOf="@+id/txtID"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txtID" />
-
-    <TextView
+        <TextView
         android:id="@+id/propertyHostName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -120,17 +110,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/edtDescription" />
 
-    <EditText
-        android:id="@+id/edtPropertyName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/txtID" />
+        <EditText
+            android:id="@+id/edtPropertyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Name"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edtPropertyPrice"
@@ -230,16 +220,6 @@
         android:text="Delete"
         app:layout_constraintStart_toEndOf="@+id/btnUpdateProperty"
         app:layout_constraintTop_toTopOf="@+id/btnUpdateProperty" />
-
-    <TextView
-        android:id="@+id/txtID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
             android:id="@+id/spnStateUpdate"

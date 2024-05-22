@@ -49,10 +49,10 @@ class HostRentingDetailFragment : Fragment() {
             }
         }
 
-        binding.txtRentingDetailPropertyAmount.text = renting.propertyAmount.toString()
-        binding.txtRentingDetailPropertyAmountPerMonth.text = renting.propertyAmount.toString()
+        binding.txtRentingDetailPropertyAmount.text = "RM ${renting.propertyAmount} / month"
+        binding.txtRentingDetailPropertyAmountPerMonth.text = "SubTotal: RM ${renting.propertyAmount}"
         binding.txtRentingDetailTotalMonth.text = renting.totalMonth.toString()
-        binding.txtRentingDetailTotalAmount.text = renting.totalAmount.toString()
+        binding.txtRentingDetailTotalAmount.text = "Total: RM ${renting.totalAmount}"
 
         // format date to (dd MM yyyy), EG 21 June 2021
         val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())

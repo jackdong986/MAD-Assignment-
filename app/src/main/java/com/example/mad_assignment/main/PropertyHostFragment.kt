@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mad_assignment.adapter.PropertyHostAdapter
 import com.example.mad_assignment.viewModel.PropertyVM
+import com.google.firebase.auth.FirebaseAuth
 
 
 class PropertyHostFragment : Fragment() {
@@ -37,6 +38,8 @@ class PropertyHostFragment : Fragment() {
         }
         binding.rvProperytHost.adapter = adapter
 //        binding.rvProperytHost.layoutManager = LinearLayoutManager(context)
+
+        setHostId()
 
         propertyVM.getResultLD().observe(viewLifecycleOwner) {
             binding.txtCount.text = "${it.size} Record(s)"
@@ -75,6 +78,13 @@ class PropertyHostFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    private fun setHostId() {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            propertyVM.setHostId(currentUser.uid)
+        }
     }
 
     private fun detail(propertyId: String) {

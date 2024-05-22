@@ -12,9 +12,11 @@ import com.example.mad_assignment.R
 import com.example.mad_assignment.databinding.FragmentPropertyHostDetailBinding
 import com.example.mad_assignment.databinding.FragmentPropertyHostInsertBinding
 import com.example.mad_assignment.util.cropToBlob
+import com.example.mad_assignment.util.errorDialog
 import com.example.mad_assignment.util.setImageBlob
 import com.example.mad_assignment.viewModel.Property
 import com.example.mad_assignment.viewModel.PropertyVM
+import com.google.firebase.auth.FirebaseAuth
 
 
 class PropertyHostInsertFragment : Fragment() {
@@ -23,6 +25,7 @@ class PropertyHostInsertFragment : Fragment() {
     private val nav by lazy { findNavController() }
 
     private val propertyVM: PropertyVM by activityViewModels()
+    private val auth by lazy { FirebaseAuth.getInstance() }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         binding = FragmentPropertyHostInsertBinding.inflate(inflater, container, false)
 
@@ -45,8 +48,6 @@ class PropertyHostInsertFragment : Fragment() {
 
     private fun reset() {
 
-        //TODO: Auto generate ID
-        binding.edtPropertyID.text.clear()
         binding.edtPropertyName.text.clear()
         binding.edtPropertyPrice.text.clear()
         binding.imgPropertyInsert.setImageDrawable(null)
@@ -66,26 +67,33 @@ class PropertyHostInsertFragment : Fragment() {
 
     private fun submit() {
 
+        val userId = auth.currentUser?.uid
+
+        if (userId == null) {
+            errorDialog("User not authenticated")
+            return
+        }
+
         val p = Property(
-            id = binding.edtPropertyID.text.toString().trim(),
             propertyName = binding.edtPropertyName.text.toString().trim(),
             propertyPrice = binding.edtPropertyPrice.text.toString().toDoubleOrNull() ?: 0.0,
             propertyImage = binding.imgPropertyInsert.cropToBlob(300, 300),
             propertyAddress = binding.edtAddress.text.toString().trim(),
             propertyCity = binding.edtCity.text.toString().trim(),
             propertyState = binding.spnStateInsert.selectedItem.toString(),
-            ttlBathrooms = binding.ttlHostBathroom.text.toString().toIntOrNull() ?: 0,
-            ttlBedrooms = binding.ttlHostBedroom.text.toString().toIntOrNull() ?: 0,
-            propertyDescription = binding.edtDescription.text.toString().trim()
+            ttlBathrooms = binding.edtTTLBathroom.text.toString().toIntOrNull() ?: 0,
+            ttlBedrooms = binding.edtTTLBedroom.text.toString().toIntOrNull() ?: 0,
+            propertyDescription = binding.edtDescription.text.toString().trim(),
+            hostId = userId
         )
 
-//        val e = propertyVM.validate(p)
-//        if (e != "") {
-//            errorDialog(e)
-//            return
-//        }
+        val e = propertyVM.validate(p)
+        if (e != "") {
+            errorDialog(e)
+            return
+        }
 
-        propertyVM.set(p)
+        propertyVM.addProperty(p)
         nav.navigateUp()
     }
 

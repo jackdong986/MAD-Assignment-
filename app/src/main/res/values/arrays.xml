@@ -38,8 +38,10 @@
     </string-array>
 
     <string-array name="sort_fields">
-        <item>Name</item>
-        <item>Price</item>
+        <item>Name⬆️</item>
+        <item>Name⬇️</item>
+        <item>Price⬆️</item>
+        <item>Price⬇️</item>
     </string-array>
 
     <string-array name="states_updates">
@@ -64,6 +66,13 @@
         <item>All</item>
         <item>Success</item>
         <item>Failed</item>
+    </string-array>
+
+    <string-array name="sort_renting">
+        <item>Created At⬆️</item>
+        <item>Created At⬇️</item>
+        <item>Total Amount⬆️</item>
+        <item>Total Amount⬇️</item>
     </string-array>
 
 </resources>

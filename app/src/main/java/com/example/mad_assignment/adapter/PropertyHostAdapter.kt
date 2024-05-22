@@ -27,7 +27,7 @@ class PropertyHostAdapter(
         val property = getItem(position)
 
         holder.binding.propertyName.text = property.propertyName
-        holder.binding.propertyPrice.text = property.propertyPrice.toString()
+        holder.binding.propertyPrice.text = "RM ${"%.2f".format(property.propertyPrice)}"
         holder.binding.propertyState.text = property.propertyState
         holder.binding.propertyImage.setImageBlob(property.propertyImage)
 

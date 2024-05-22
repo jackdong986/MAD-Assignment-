@@ -19,14 +19,23 @@ import com.anychart.enums.Position
 import com.anychart.enums.TooltipPositionMode
 import com.example.mad_assignment.databinding.FragmentHostDashboardBinding
 import com.example.mad_assignment.util.toast
+import com.example.mad_assignment.viewModel.RENTING
 import com.example.mad_assignment.viewModel.RESTORE
+import com.example.mad_assignment.viewModel.Renting
 import com.example.mad_assignment.viewModel.RentingVM
+import com.google.firebase.auth.FirebaseAuth
+import java.util.Calendar
 
 
 class HostDashboardFragment : Fragment() {
 
     private lateinit var binding: FragmentHostDashboardBinding
     private val rentingVM: RentingVM by activityViewModels()
+    private var currentUserId = "";
+
+
+    private lateinit var lineChartView: AnyChartView
+    private lateinit var lineChart: Cartesian
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,56 +46,79 @@ class HostDashboardFragment : Fragment() {
 
         binding.restore.setOnClickListener { restore() }
 
+        val auth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser
+        currentUserId = currentUser?.uid ?: ""
+
+        if(currentUserId.isEmpty()) {
+            toast("No user found")
+            return binding.root
+        }
+
+        // Initialize chart
+        lineChartView = binding.lineChart
+        lineChart = AnyChart.line()
+        lineChart.credits().enabled(false)
+        lineChart.title("Trend of Sales")
+        lineChart.yAxis(0).title("Total Sales (RM)")
+        lineChartView.setChart(lineChart)
+
+
         // Observe the LiveData
         rentingVM.getRentingLD().observe(viewLifecycleOwner, Observer { rentingList ->
-            val totalRentingAmount = rentingList.sumOf { it.totalAmount }
-            binding.txtTotalRentingAmountForHost.text = "RM ${"%.2f".format(totalRentingAmount)}"
+            val filteredList = rentingList.filter { it.hostId == currentUserId }
 
-            val totalRenting = rentingList.count { it.paymentStatus == "Success" }
-            binding.txtTotalRenting.text = "$totalRenting"
-
-            val averageRentingAmount = if (totalRenting > 0) totalRentingAmount / totalRenting else 0.0
-            binding.txtTotalAverageRentingForHost.text = "RM ${"%.2f".format(averageRentingAmount)}"
+            updateDashboard(filteredList)
+            updateLineChart(filteredList)
         })
 
-
-
-
-        // Initialize and set up line chart
-        val lineChartView: AnyChartView = binding.lineChart
-        val lineChart: Cartesian = AnyChart.line()
-
-        lineChart.title("Trend of Sales")
-        lineChart.yAxis(0).title("Number of Sales")
-
-        val lineData: MutableList<DataEntry> = ArrayList()
-        lineData.add(CustomDataEntry("Jan", 1000))
-        lineData.add(CustomDataEntry("Feb", 1200))
-        lineData.add(CustomDataEntry("Mar", 800))
-        lineData.add(CustomDataEntry("Apr", 1500))
-        lineData.add(CustomDataEntry("May", 900))
-        lineData.add(CustomDataEntry("Jun", 1100))
-        lineData.add(CustomDataEntry("Jul", 1300))
-        lineData.add(CustomDataEntry("Aug", 1400))
-        lineData.add(CustomDataEntry("Sep", 1000))
-        lineData.add(CustomDataEntry("Oct", 1600))
-        lineData.add(CustomDataEntry("Nov", 1100))
-        lineData.add(CustomDataEntry("Dec", 1200))
-
-        val lineSet = com.anychart.data.Set.instantiate()
-        lineSet.data(lineData)
-        val lineMapping = lineSet.mapAs("{ x: 'x', value: 'value' }")
-
-        val lineSeries = lineChart.line(lineMapping)
-        lineSeries.name("Sales")
-
-        lineChartView.setChart(lineChart)
 
 
 
 
         return binding.root
     }
+
+    private fun updateDashboard(rentingList: List<Renting>) {
+        val totalRentingAmount = rentingList.sumOf { it.totalAmount }
+        binding.txtTotalRentingAmountForHost.text = "RM ${"%.2f".format(totalRentingAmount)}"
+
+        val totalRenting = rentingList.count { it.paymentStatus == "Success" }
+        binding.txtTotalRenting.text = "$totalRenting"
+
+        val averageRentingAmount = if (totalRenting > 0) totalRentingAmount / totalRenting else 0.0
+        binding.txtTotalAverageRentingForHost.text = "RM ${"%.2f".format(averageRentingAmount)}"
+    }
+
+    private fun updateLineChart(rentingList: List<Renting>) {
+        val monthlyTotals = DoubleArray(12) { 0.0 }
+        val calendar = Calendar.getInstance()
+        val currentYear = calendar.get(Calendar.YEAR)
+
+        rentingList.forEach { renting ->
+            calendar.time = renting.createdAt
+            if (calendar.get(Calendar.YEAR) == currentYear) {
+                val month = calendar.get(Calendar.MONTH) // 0-based month
+                monthlyTotals[month] += renting.totalAmount
+            }
+        }
+
+        val lineData: MutableList<DataEntry> = ArrayList()
+        val months = arrayOf("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+        for (i in months.indices) {
+            lineData.add(CustomDataEntry(months[i], monthlyTotals[i]))
+        }
+
+        val lineSet = com.anychart.data.Set.instantiate()
+        lineSet.data(lineData)
+        val lineMapping = lineSet.mapAs("{ x: 'x', value: 'value' }")
+
+        // Clear previous series and add new series
+        lineChart.removeAllSeries()
+        lineChart.line(lineMapping).name("Sales")
+    }
+
+
 
     private class CustomDataEntry(x: String?, value: Number?) : ValueDataEntry(x, value)
 

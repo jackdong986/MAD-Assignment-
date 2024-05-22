@@ -13,6 +13,9 @@ import com.example.mad_assignment.util.infoDialog
 import com.example.mad_assignment.viewModel.HOSTS
 import com.example.mad_assignment.viewModel.Host
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.Blob
 
@@ -39,10 +42,11 @@ class HostRegisterFragment : Fragment() {
         binding.btnHostRegisterRegister.setOnClickListener {
             val email = binding.edtHostRegisterEmail.text.toString().trim()
             val password = binding.edtHostRegisterPwd.text.toString().trim()
-            if (email.isNotEmpty() && password.isNotEmpty()) {
+            val name = binding.edtHostRegisterName.text.toString().trim()
+            if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
                 registerUser(email, password)
             } else {
-                errorDialog("Please enter email and password")
+                errorDialog("Please enter name, email and password")
             }
         }
 
@@ -68,9 +72,27 @@ class HostRegisterFragment : Fragment() {
                     infoDialog("Registration successful")
                     nav.navigate(R.id.hostLoginFragment)
                 } else {
-                    errorDialog("Registration failed")
+                    val exception = task.exception
+                    handleRegistrationError(exception)
                 }
             }
+    }
+
+    private fun handleRegistrationError(exception: Exception?) {
+        when (exception) {
+            is FirebaseAuthWeakPasswordException -> {
+                errorDialog("Registration Failed: Password must be at least 6 characters long.")
+            }
+            is FirebaseAuthInvalidCredentialsException -> {
+                errorDialog("Registration Failed: The email address is invalid format.")
+            }
+            is FirebaseAuthUserCollisionException -> {
+                errorDialog("Registration Failed: The email address is already in use by another account.")
+            }
+            else -> {
+                errorDialog("Registration Failed: ${exception?.message}")
+            }
+        }
     }
 
     private fun createUserInFirestore(user: FirebaseUser) {

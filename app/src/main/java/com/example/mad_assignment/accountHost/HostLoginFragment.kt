@@ -13,6 +13,8 @@ import com.example.mad_assignment.R
 import com.example.mad_assignment.databinding.FragmentHostLoginBinding
 import com.example.mad_assignment.util.errorDialog
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class HostLoginFragment : Fragment() {
@@ -53,12 +55,32 @@ class HostLoginFragment : Fragment() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    val intent = Intent(requireContext(), HostActivity::class.java)
-                    startActivity(intent)
-                    requireActivity().finish()
+                    val userId = auth.currentUser?.uid
+                    if (userId != null) {
+                        checkIfHost(userId)
+                    } else {
+                        errorDialog("User ID not found")
+                    }
                 } else {
                     errorDialog("Login failed")
                 }
             }
+    }
+
+    private fun checkIfHost(userId: String) {
+        val firestore = FirebaseFirestore.getInstance()
+        val hostRef = firestore.collection("hosts").document(userId)
+        hostRef.get().addOnSuccessListener { document: DocumentSnapshot ->
+            if (document.exists()) {
+                val intent = Intent(requireContext(), HostActivity::class.java)
+                startActivity(intent)
+                requireActivity().finish()
+            } else {
+                auth.signOut() // Sign out the user as they are not a host
+                errorDialog("Access denied: You are not registered as a host")
+            }
+        }.addOnFailureListener { exception: Exception ->
+            errorDialog("Failed to check host status: ${exception.message}")
+        }
     }
 }

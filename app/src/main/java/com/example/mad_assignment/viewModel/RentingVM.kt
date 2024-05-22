@@ -17,6 +17,8 @@ class RentingVM: ViewModel() {
     }
 
     override fun onCleared() {
+
+
         listener?.remove()
     }
 
@@ -37,6 +39,8 @@ class RentingVM: ViewModel() {
     private val resultLD = MutableLiveData<List<Renting>>()
     private var rentingID = ""
     private var paymentStatus = ""
+    private var hostId = ""
+    private var field = ""
 
     fun getResultLD() = resultLD
 
@@ -50,11 +54,29 @@ class RentingVM: ViewModel() {
         updateResult()
     }
 
+    fun sort(field: String) {
+        this.field = field
+        updateResult()
+    }
+
+    fun setHostId(hostId: String) {
+        this.hostId = hostId
+        updateResult()
+    }
+
     private fun updateResult() {
-        var list = getAll()
+        var list = getAll(hostId)
 
         list = list.filter { it.id.contains(rentingID, ignoreCase = true)  &&
                 (paymentStatus == "All" || it.paymentStatus == paymentStatus) }
+
+        list = when (field) {
+            "Created At⬆️" -> list.sortedBy { it.createdAt }
+            "Created At⬇️" -> list.sortedByDescending { it.createdAt }
+            "Total Amount⬆️" -> list.sortedBy { it.totalAmount }
+            "Total Amount⬇️" -> list.sortedByDescending { it.totalAmount }
+            else -> list
+        }
 
         resultLD.value = list
     }

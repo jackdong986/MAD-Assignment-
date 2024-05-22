@@ -21,16 +21,6 @@
             app:layout_constraintGuide_begin="122dp" />
 
         <TextView
-            android:id="@+id/propertyId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="ID"
-            app:layout_constraintBottom_toBottomOf="@+id/edtPropertyID"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/edtPropertyID" />
-
-        <TextView
             android:id="@+id/propertyHostName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -130,7 +120,7 @@
             android:inputType="text"
             android:text="Name"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/edtPropertyID" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/edtPropertyPrice"
@@ -219,18 +209,6 @@
             android:text="Reset"
             app:layout_constraintStart_toEndOf="@+id/btnSubmitProperty"
             app:layout_constraintTop_toTopOf="@+id/btnSubmitProperty" />
-
-        <EditText
-            android:id="@+id/edtPropertyID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Name"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imgPropertyInsert"
