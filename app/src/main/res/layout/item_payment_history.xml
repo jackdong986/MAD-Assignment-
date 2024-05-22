@@ -40,4 +40,11 @@
         android:layout_height="wrap_content"
         android:text="Total Months"
         android:paddingTop="4dp" />
+
+    <TextView
+        android:id="@+id/created_At"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Created At"
+        android:paddingTop="4dp" />
 </LinearLayout>
