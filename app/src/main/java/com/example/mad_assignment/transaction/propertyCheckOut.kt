@@ -7,13 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
+import android.widget.RadioButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.mad_assignment.R
 import com.example.mad_assignment.databinding.FragmentPropertyCheckOutBinding
+import com.example.mad_assignment.viewModel.Renting
+import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 
 class propertyCheckOut : Fragment() {
@@ -21,6 +26,8 @@ class propertyCheckOut : Fragment() {
     private var startDate: Calendar = Calendar.getInstance()
     private var endDate: Calendar = Calendar.getInstance()
     private var propertyPricePerMonth: Double = 0.0 // Example price, replace with actual price
+
+    private val firestore = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,10 +80,20 @@ class propertyCheckOut : Fragment() {
             // Handle payment method selection if needed
         }
 
-        // Set up listener for the next button
-        binding.nextButton.setOnClickListener {
-            calculateTotalAmount()
-            findNavController().navigate(R.id.makePayment)
+        // Set up listener for the success button
+        binding.successButton.setOnClickListener {
+            if (validateInput()) {
+                calculateTotalAmount()
+                uploadRentingData("success")
+            }
+        }
+
+        // Set up listener for the failed button
+        binding.failedButton.setOnClickListener {
+            if (validateInput()) {
+                calculateTotalAmount()
+                uploadRentingData("failed")
+            }
         }
     }
 
@@ -116,5 +133,56 @@ class propertyCheckOut : Fragment() {
         val endYear = endDate.get(Calendar.YEAR)
         val endMonth = endDate.get(Calendar.MONTH)
         return (endYear - startYear) * 12 + (endMonth - startMonth) + 1
+    }
+
+    private fun validateInput(): Boolean {
+        val startDateText = binding.startDate.text.toString()
+        val endDateText = binding.endDate.text.toString()
+        val selectedPaymentMethod = binding.paymentMethodGroup.checkedRadioButtonId
+
+        if (startDateText == "Select Start Date") {
+            Toast.makeText(requireContext(), "Please select a start date", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (endDateText == "Select End Date") {
+            Toast.makeText(requireContext(), "Please select an end date", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (selectedPaymentMethod == -1) {
+            Toast.makeText(requireContext(), "Please select a payment method", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        return true
+    }
+
+    private fun uploadRentingData(paymentStatus: String) {
+        val args = propertyCheckOutArgs.fromBundle(requireArguments())
+        val renting = Renting(
+            propertyAmount = propertyPricePerMonth,
+            rentingStartDate = startDate.time,
+            rentingEndDate = endDate.time,
+            totalMonth = calculateMonthDifference(startDate, endDate),
+            totalAmount = propertyPricePerMonth * calculateMonthDifference(startDate, endDate),
+            propertyId = args.id,
+            hostId = args.hostId,
+            custId = "yourCustomerId", // Replace with actual customer ID
+            paymentStatus = paymentStatus,
+            createdAt = Date()
+        )
+
+        firestore.collection("renting")
+            .add(renting)
+            .addOnSuccessListener { documentReference ->
+                // Handle success
+                val docId = documentReference.id
+                println("DocumentSnapshot written with ID: $docId")
+            }
+            .addOnFailureListener { e ->
+                // Handle failure
+                println("Error adding document: $e")
+            }
     }
 }
