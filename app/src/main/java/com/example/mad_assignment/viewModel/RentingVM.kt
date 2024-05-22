@@ -39,6 +39,7 @@ class RentingVM: ViewModel() {
     private val resultLD = MutableLiveData<List<Renting>>()
     private var rentingID = ""
     private var paymentStatus = ""
+    private var hostId = ""
 
     fun getResultLD() = resultLD
 
@@ -52,8 +53,13 @@ class RentingVM: ViewModel() {
         updateResult()
     }
 
+    fun setHostId(hostId: String) {
+        this.hostId = hostId
+        updateResult()
+    }
+
     private fun updateResult() {
-        var list = getAll()
+        var list = getAll(hostId)
 
         list = list.filter { it.id.contains(rentingID, ignoreCase = true)  &&
                 (paymentStatus == "All" || it.paymentStatus == paymentStatus) }

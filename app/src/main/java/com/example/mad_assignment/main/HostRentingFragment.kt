@@ -14,6 +14,7 @@ import com.example.mad_assignment.R
 import com.example.mad_assignment.adapter.RentingHostAdapter
 import com.example.mad_assignment.databinding.FragmentHostRentingBinding
 import com.example.mad_assignment.viewModel.RentingVM
+import com.google.firebase.auth.FirebaseAuth
 
 
 class HostRentingFragment : Fragment() {
@@ -34,6 +35,8 @@ class HostRentingFragment : Fragment() {
         }
 
         binding.rvHostRenting.adapter = adapter
+
+        setHostId()
 
         rentingVM.getResultLD().observe(viewLifecycleOwner) {
 //            binding.txtCount.text = "${it.size} Record(s)"
@@ -60,6 +63,13 @@ class HostRentingFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    private fun setHostId() {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            rentingVM.setHostId(currentUser.uid)
+        }
     }
 
     private fun detail(id: String) {
