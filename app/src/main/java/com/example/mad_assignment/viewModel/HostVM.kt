@@ -35,4 +35,20 @@ class HostVM: ViewModel() {
     fun set(h: Host) {
         HOSTS.document(h.id).set(h)
     }
+
+    fun validate(h: Host): String {
+
+        var e = ""
+
+        if (h.hostName == "") e += "- Name is required.\n"
+        else if (h.hostName.length < 3) e +=  "- Name is too short (at least 3 letters).\n"
+
+        if(h.hostEmail == ""){
+            e += "- Email is required.\n"
+        }else if(!h.hostEmail.contains("@") || !h.hostEmail.contains(".")){
+            e += "- Email format is invalid.\n"
+        }
+
+        return e
+    }
 }

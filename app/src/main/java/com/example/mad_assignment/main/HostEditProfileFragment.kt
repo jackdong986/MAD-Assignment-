@@ -70,24 +70,41 @@ class HostEditProfileFragment : Fragment() {
     private fun updateProfile(hostId: String) {
         val newPassword = binding.edtProfileDetailHostPwd.text.toString()
         val confirmPassword = binding.edtProfileDetailHostConfirmPwd.text.toString()
+        val h = Host(
+            hostId,
+            hostName = binding.edtProfileDetailHostName.text.toString(),
+            hostEmail = binding.edtProfileDetailHostEmail.text.toString(),
+            hostImage = binding.imgHostProfileDetailPicture.cropToBlob(300, 300)
+        )
 
-        if (newPassword != confirmPassword) {
-            errorDialog("Passwords do not match")
+        val e = hostVM.validate(h)
+        if (e != "") {
+            errorDialog(e)
             return
         }
 
-        val user = auth.currentUser
-        if (user != null) {
-            user.updatePassword(newPassword)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        updateHostDocument(hostId)
-                    } else {
-                        errorDialog("Failed to update password: ${task.exception?.message}")
-                    }
-                }
+        if (newPassword.isEmpty() && confirmPassword.isEmpty()) {
+            // Passwords are empty, just update profile details and navigate back
+            updateHostDocument(hostId)
         } else {
-            errorDialog("User not logged in")
+            if (newPassword != confirmPassword) {
+                errorDialog("Passwords do not match")
+                return
+            }
+
+            val user = auth.currentUser
+            if (user != null) {
+                user.updatePassword(newPassword)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            updateHostDocument(hostId)
+                        } else {
+                            errorDialog("Failed to update password: ${task.exception?.message}")
+                        }
+                    }
+            } else {
+                errorDialog("User not logged in")
+            }
         }
     }
 

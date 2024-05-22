@@ -84,7 +84,7 @@ class PropertyHostInsertFragment : Fragment() {
             ttlBathrooms = binding.edtTTLBathroom.text.toString().toIntOrNull() ?: 0,
             ttlBedrooms = binding.edtTTLBedroom.text.toString().toIntOrNull() ?: 0,
             propertyDescription = binding.edtDescription.text.toString().trim(),
-            hostId = userId // Set the hostId field here
+            hostId = userId
         )
 
         val e = propertyVM.validate(p)
