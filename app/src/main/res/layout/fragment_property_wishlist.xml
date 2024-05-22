@@ -45,14 +45,5 @@
         android:textColor="@android:color/darker_gray" />
 
     <!-- Floating Action Button -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add_property"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="16dp"
-        android:contentDescription="Add property"
-        android:src="@drawable/baseline_add_24"
-        android:tint="@android:color/white" />
 
 </LinearLayout>
