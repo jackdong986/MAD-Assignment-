@@ -24,6 +24,8 @@ class SplashScreen : AppCompatActivity() {
         val splashScreenDuration = 2000L // 2 seconds
 //        val hostActivityIntent = Intent(this, HostActivity::class.java)
         val splashScreenRunnable = Runnable {
+            //Log out
+            auth.signOut()
             val currentUser = auth.currentUser
             if (currentUser != null) {
                 // User is logged in, navigate to MainActivity
