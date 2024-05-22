@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mad_assignment.account.accManagement
 import com.example.mad_assignment.account.login
+import com.example.mad_assignment.accountHost.AuthHostActivity
 import com.example.mad_assignment.databinding.ActivitySplashScreenBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -21,8 +22,9 @@ class SplashScreen : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         val splashScreenDuration = 2000L // 2 seconds
-        val hostActivityIntent = Intent(this, HostActivity::class.java)
+//        val hostActivityIntent = Intent(this, HostActivity::class.java)
         val splashScreenRunnable = Runnable {
+
             val currentUser = auth.currentUser
             if (currentUser != null) {
                 // User is logged in, navigate to MainActivity
@@ -35,6 +37,7 @@ class SplashScreen : AppCompatActivity() {
             }
 
             //startActivity(hostActivityIntent)
+
             finish()
         }
         // Schedule the splash screen to finish after a delay

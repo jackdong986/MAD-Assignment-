@@ -34,6 +34,28 @@ class RentingVM: ViewModel() {
         RENTING.document(r.id).set(r)
     }
 
-//    private val resultLD = MutableLiveData<List<Renting>>()
-//    private var paymentStatus = ""
+    private val resultLD = MutableLiveData<List<Renting>>()
+    private var rentingID = ""
+    private var paymentStatus = ""
+
+    fun getResultLD() = resultLD
+
+    fun search(rentingID: String) {
+        this.rentingID = rentingID
+        updateResult()
+    }
+
+    fun filter(paymentStatus: String) {
+        this.paymentStatus = paymentStatus
+        updateResult()
+    }
+
+    private fun updateResult() {
+        var list = getAll()
+
+        list = list.filter { it.id.contains(rentingID, ignoreCase = true)  &&
+                (paymentStatus == "All" || it.paymentStatus == paymentStatus) }
+
+        resultLD.value = list
+    }
 }

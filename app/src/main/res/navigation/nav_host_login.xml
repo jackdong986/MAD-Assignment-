@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_host_login"
+    app:startDestination="@id/hostLoginFragment">
+
+    <fragment
+        android:id="@+id/hostLoginFragment"
+        android:name="com.example.mad_assignment.accountHost.HostLoginFragment"
+        android:label="fragment_host_login"
+        tools:layout="@layout/fragment_host_login" />
+    <fragment
+        android:id="@+id/hostRegisterFragment"
+        android:name="com.example.mad_assignment.accountHost.HostRegisterFragment"
+        android:label="fragment_host_register"
+        tools:layout="@layout/fragment_host_register" />
+    <fragment
+        android:id="@+id/hostForgotPasswordFragment"
+        android:name="com.example.mad_assignment.accountHost.HostForgotPasswordFragment"
+        android:label="fragment_host_forgot_password"
+        tools:layout="@layout/fragment_host_forgot_password" />
+</navigation>
