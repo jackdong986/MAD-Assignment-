@@ -48,8 +48,6 @@ class PropertyHostDetailFragment : Fragment() {
 
 
 
-
-        binding.txtID.text = property.id
         binding.edtPropertyName.setText(property.propertyName)
         binding.edtPropertyPrice.setText(property.propertyPrice.toString())
         binding.imgProperty.setImageBlob(property.propertyImage)
@@ -86,7 +84,6 @@ class PropertyHostDetailFragment : Fragment() {
     private fun update() {
 
         val p = Property(
-            id = binding.txtID.text.toString().trim(),
             propertyName = binding.edtPropertyName.text.toString().trim(),
             propertyPrice = binding.edtPropertyPrice.text.toString().toDoubleOrNull() ?: 0.0,
             propertyImage = binding.imgProperty.cropToBlob(300, 300),
