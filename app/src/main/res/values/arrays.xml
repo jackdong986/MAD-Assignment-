@@ -66,4 +66,9 @@
         <item>Failed</item>
     </string-array>
 
+    <string-array name="sort_renting">
+        <item>Created At</item>
+        <item>Total Amount</item>
+    </string-array>
+
 </resources>

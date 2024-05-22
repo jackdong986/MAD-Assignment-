@@ -40,6 +40,7 @@ class RentingVM: ViewModel() {
     private var rentingID = ""
     private var paymentStatus = ""
     private var hostId = ""
+    private var field = ""
 
     fun getResultLD() = resultLD
 
@@ -53,6 +54,12 @@ class RentingVM: ViewModel() {
         updateResult()
     }
 
+    fun sort(field: String, reverse: Boolean) {
+        this.field = field
+//        this.reverse = reverse
+        updateResult()
+    }
+
     fun setHostId(hostId: String) {
         this.hostId = hostId
         updateResult()
@@ -63,6 +70,13 @@ class RentingVM: ViewModel() {
 
         list = list.filter { it.id.contains(rentingID, ignoreCase = true)  &&
                 (paymentStatus == "All" || it.paymentStatus == paymentStatus) }
+
+        //sort by createdAt or total Amount
+        if (field == "Created At") {
+            list = list.sortedBy { it.createdAt }
+        } else if (field == "Total Amount") {
+            list = list.sortedBy { it.totalAmount }
+        }
 
         resultLD.value = list
     }

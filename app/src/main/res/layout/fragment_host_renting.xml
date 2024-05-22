@@ -32,12 +32,31 @@
         app:layout_constraintTop_toBottomOf="@+id/rentingHostTitle" />
 
     <Spinner
+        android:id="@+id/sortRentingHost"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:entries="@array/sort_renting"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/svHostRenting" />
+
+    <Spinner
         android:id="@+id/spnRentingPaymentStatus"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:entries="@array/payment_status"
+        app:layout_constraintStart_toEndOf="@+id/sortRentingHost"
+        app:layout_constraintTop_toTopOf="@+id/sortRentingHost" />
+
+    <TextView
+        android:id="@+id/txtCounRentingHost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:entries="@array/payment_status"
+        android:text="Count"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/svHostRenting" />
 
@@ -49,6 +68,7 @@
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnRentingPaymentStatus"
+        app:layout_constraintTop_toBottomOf="@+id/sortRentingHost"
         tools:listitem="@layout/item_host_renting" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

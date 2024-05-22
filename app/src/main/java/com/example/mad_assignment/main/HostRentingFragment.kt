@@ -39,7 +39,7 @@ class HostRentingFragment : Fragment() {
         setHostId()
 
         rentingVM.getResultLD().observe(viewLifecycleOwner) {
-//            binding.txtCount.text = "${it.size} Record(s)"
+            binding.txtCounRentingHost.text = "${it.size} Record(s)"
             adapter.submitList(it)
         }
 
@@ -51,6 +51,15 @@ class HostRentingFragment : Fragment() {
                 return true
             }
         })
+
+        binding.sortRentingHost.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val field = binding.sortRentingHost.selectedItem.toString()
+                rentingVM.sort(field, true)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) = Unit
+        }
 
         binding.spnRentingPaymentStatus.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
