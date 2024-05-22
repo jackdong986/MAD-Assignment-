@@ -35,6 +35,7 @@ class HostDashboardFragment : Fragment() {
     ): View? {
         binding = FragmentHostDashboardBinding.inflate(inflater, container, false)
 
+        binding.restore.setOnClickListener { restore() }
 
         // Observe the LiveData
         rentingVM.getRentingLD().observe(viewLifecycleOwner, Observer { rentingList ->
