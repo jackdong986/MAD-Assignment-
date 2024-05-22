@@ -41,20 +41,34 @@ class userFeedback : Fragment() {
 
         // Set click listener for the submit button
         btnSubmit.setOnClickListener {
-            submitFeedback()
+            validateAndSubmitFeedback()
         }
 
         return view
     }
 
-    private fun submitFeedback() {
+    private fun validateAndSubmitFeedback() {
         val name = etName.text.toString().trim()
         val email = etEmail.text.toString().trim()
         val rating = ratingBar.rating
         val feedbackText = etFeedback.text.toString().trim()
 
-        if (name.isEmpty() || email.isEmpty() || feedbackText.isEmpty()) {
-            Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
+        // Validate input fields
+        if (name.isEmpty()) {
+            etName.error = "Name is required"
+            etName.requestFocus()
+            return
+        }
+
+        if (email.isEmpty()) {
+            etEmail.error = "Email is required"
+            etEmail.requestFocus()
+            return
+        }
+
+        if (feedbackText.isEmpty()) {
+            etFeedback.error = "Feedback text is required"
+            etFeedback.requestFocus()
             return
         }
 

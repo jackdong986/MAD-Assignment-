@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.util.PatternsCompat
 import androidx.navigation.fragment.findNavController
 import com.example.mad_assignment.R
 import com.example.mad_assignment.databinding.FragmentForgotPasswordBinding
@@ -30,12 +31,16 @@ class ForgotPasswordFragment : Fragment() {
 
         binding.resetPasswordButton.setOnClickListener {
             val email = binding.emailEditText.text.toString().trim()
-            if (email.isNotEmpty()) {
+            if (isValidEmail(email)) {
                 resetPassword(email)
             } else {
-                Toast.makeText(requireContext(), "Please enter your email", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Please enter a valid email address", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        return PatternsCompat.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     private fun resetPassword(email: String) {

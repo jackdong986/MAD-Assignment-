@@ -3,6 +3,7 @@ package com.example.mad_assignment.client.profile
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
@@ -22,6 +23,8 @@ import com.example.mad_assignment.databinding.FragmentPropertyProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 
 class propertyProfile : Fragment() {
 
@@ -61,10 +64,6 @@ class propertyProfile : Fragment() {
             findNavController().navigate(R.id.paymentHistory)
         }
 
-        binding.btnReviewRating.setOnClickListener {
-            //findNavController().navigate(R.id.action_propertyProfile_to_reviewRating)
-        }
-
         binding.btnLogout.setOnClickListener {
             auth.signOut()
             val intent = Intent(requireContext(), accManagement::class.java)
@@ -99,26 +98,36 @@ class propertyProfile : Fragment() {
             val storageRef = storage.reference
             val profilePicRef = storageRef.child("profile_pictures/${user.email}.jpg")
 
-            profilePicRef.putFile(imageUri)
-                .addOnSuccessListener {
-                    profilePicRef.downloadUrl.addOnSuccessListener { uri ->
-                        val profilePicUrl = uri.toString()
-                        saveProfilePictureUrlToFirestore(profilePicUrl)
-                    }
-                }
-                .addOnFailureListener { e ->
-                    Toast.makeText(requireContext(), "Failed to upload image: ${e.message}", Toast.LENGTH_SHORT).show()
-                }
+            // Get the Bitmap from the Uri
+            val inputStream: InputStream? = requireContext().contentResolver.openInputStream(imageUri)
+            val bitmap = BitmapFactory.decodeStream(inputStream)
+            inputStream?.close()
+
+            // Convert the Bitmap to Base64 string
+            val base64String = encodeImageToBase64(bitmap)
+
+            saveProfilePictureUrlToFirestore(base64String)
         }
     }
 
-    private fun saveProfilePictureUrlToFirestore(profilePicUrl: String) {
+    private fun encodeImageToBase64(bitmap: Bitmap): String {
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+        val byteArray = byteArrayOutputStream.toByteArray()
+        return Base64.encodeToString(byteArray, Base64.DEFAULT)
+    }
+
+    private fun saveProfilePictureUrlToFirestore(profilePicBase64: String) {
         val user = auth.currentUser
         if (user != null) {
             db.collection("customer").document(user.email!!)
-                .update("cusImage", profilePicUrl)
+                .update("cusImage", profilePicBase64)
                 .addOnSuccessListener {
-                    Glide.with(this).load(profilePicUrl).into(binding.profilePicture)
+                    // Decode Base64 string to Bitmap and load it into ImageView
+                    val decodedBytes = Base64.decode(profilePicBase64, Base64.DEFAULT)
+                    val bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+                    Glide.with(this).load(bitmap).into(binding.profilePicture)
+
                     Toast.makeText(requireContext(), "Profile picture updated", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { e ->
@@ -189,7 +198,7 @@ class propertyProfile : Fragment() {
         }
 
         if (!profilePicture.isNullOrEmpty()) {
-            // Decode base64 string to bytes
+            // Decode Base64 string to bytes
             val decodedBytes = Base64.decode(profilePicture, Base64.DEFAULT)
 
             // Create Bitmap from decoded bytes
@@ -199,6 +208,4 @@ class propertyProfile : Fragment() {
             Glide.with(this).load(bitmap).into(binding.profilePicture)
         }
     }
-
-
 }
