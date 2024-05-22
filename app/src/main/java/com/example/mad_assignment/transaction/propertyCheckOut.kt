@@ -84,7 +84,7 @@ class propertyCheckOut : Fragment() {
         binding.successButton.setOnClickListener {
             if (validateInput()) {
                 calculateTotalAmount()
-                uploadRentingData("success")
+                uploadRentingData("Success")
             }
         }
 
@@ -92,7 +92,7 @@ class propertyCheckOut : Fragment() {
         binding.failedButton.setOnClickListener {
             if (validateInput()) {
                 calculateTotalAmount()
-                uploadRentingData("failed")
+                uploadRentingData("Failed")
             }
         }
     }
