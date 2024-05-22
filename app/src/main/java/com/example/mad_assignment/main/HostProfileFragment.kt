@@ -17,6 +17,7 @@ import com.example.mad_assignment.R
 import com.example.mad_assignment.databinding.FragmentPropertyHostBinding
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mad_assignment.RedirectAuthenticationActivity
 import com.example.mad_assignment.accountHost.AuthHostActivity
 import com.example.mad_assignment.adapter.PropertyHostAdapter
 import com.example.mad_assignment.databinding.FragmentHostProfileBinding
@@ -60,7 +61,7 @@ class HostProfileFragment : Fragment() {
         binding.btnHostLogout.setOnClickListener {
             auth.signOut()
             // Create an Intent to start the AuthHostActivity
-            val intent = Intent(requireContext(), AuthHostActivity::class.java)
+            val intent = Intent(requireContext(), RedirectAuthenticationActivity::class.java)
 
             // Clear the back stack and start the AuthHostActivity as a new task
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

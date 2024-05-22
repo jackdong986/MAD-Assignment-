@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.mad_assignment.R
+import com.example.mad_assignment.RedirectAuthenticationActivity
 import com.example.mad_assignment.account.accManagement
 import com.example.mad_assignment.databinding.FragmentPropertyProfileBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -66,7 +67,7 @@ class propertyProfile : Fragment() {
 
         binding.btnLogout.setOnClickListener {
             auth.signOut()
-            val intent = Intent(requireContext(), accManagement::class.java)
+            val intent = Intent(requireContext(), RedirectAuthenticationActivity::class.java)
             startActivity(intent)
             requireActivity().finish()
         }
