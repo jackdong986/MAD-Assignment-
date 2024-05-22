@@ -25,16 +25,20 @@ class SplashScreen : AppCompatActivity() {
 //        val hostActivityIntent = Intent(this, HostActivity::class.java)
         val splashScreenRunnable = Runnable {
 
-            val currentUser = auth.currentUser
-            if (currentUser != null) {
-                // User is logged in, navigate to MainActivity
-                val mainActivityIntent = Intent(this, MainActivity::class.java)
-                startActivity(mainActivityIntent)
-            } else {
-                // No user is logged in, navigate to LoginActivity
-                val loginIntent = Intent(this, accManagement::class.java)
-                startActivity(loginIntent)
-            }
+            // Create an Intent to start RedirectAuthenticationActivity
+            val redirectAuthenticationIntent = Intent(this, RedirectAuthenticationActivity::class.java)
+            startActivity(redirectAuthenticationIntent)
+
+//            val currentUser = auth.currentUser
+//            if (currentUser != null) {
+//                // User is logged in, navigate to MainActivity
+//                val mainActivityIntent = Intent(this, MainActivity::class.java)
+//                startActivity(mainActivityIntent)
+//            } else {
+//                // No user is logged in, navigate to LoginActivity
+//                val loginIntent = Intent(this, accManagement::class.java)
+//                startActivity(loginIntent)
+//            }
 
             //startActivity(hostActivityIntent)
 

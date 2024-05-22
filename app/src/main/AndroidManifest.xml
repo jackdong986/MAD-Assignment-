@@ -22,6 +22,9 @@
         android:theme="@style/Theme.Mad_assignment"
         tools:targetApi="31">
         <activity
+            android:name=".RedirectAuthenticationActivity"
+            android:exported="false" />
+        <activity
             android:name=".accountHost.AuthHostActivity"
             android:exported="false" />
         <activity
