@@ -10,7 +10,11 @@ import com.example.mad_assignment.R
 import com.example.mad_assignment.databinding.FragmentHostRegisterBinding
 import com.example.mad_assignment.util.errorDialog
 import com.example.mad_assignment.util.infoDialog
+import com.example.mad_assignment.viewModel.HOSTS
+import com.example.mad_assignment.viewModel.Host
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.Blob
 
 
 class HostRegisterFragment : Fragment() {
@@ -57,6 +61,10 @@ class HostRegisterFragment : Fragment() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
+                    val user = task.result?.user
+                    user?.let {
+                        createUserInFirestore(it)
+                    }
                     infoDialog("Registration successful")
                     nav.navigate(R.id.hostLoginFragment)
                 } else {
@@ -65,5 +73,15 @@ class HostRegisterFragment : Fragment() {
             }
     }
 
+    private fun createUserInFirestore(user: FirebaseUser) {
+        val host = Host(
+            id = user.uid,
+            hostName = binding.edtHostRegisterName.text.toString().trim(),
+            hostEmail = user.email ?: "",
+            hostImage = Blob.fromBytes(ByteArray(0)) // Default empty blob, you might want to handle image separately
+        )
 
+        HOSTS.document(user.uid).set(host)
+
+    }
 }
