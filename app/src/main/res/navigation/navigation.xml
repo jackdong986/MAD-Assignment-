@@ -159,7 +159,7 @@
 
     <fragment
         android:id="@+id/propertyWishlist"
-        android:name="com.example.mad_assignment.client.PropertyWishlist"
+        android:name="com.example.mad_assignment.client.profile.PropertyWishlist"
         android:label="Property Wishlist"
         tools:layout="@layout/fragment_property_wishlist">
         <action

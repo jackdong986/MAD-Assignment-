@@ -3,9 +3,11 @@ package com.example.mad_assignment.client.profile
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
+import android.util.Base64
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.mad_assignment.R
 import com.example.mad_assignment.account.accManagement
 import com.example.mad_assignment.databinding.FragmentPropertyProfileBinding
@@ -42,7 +45,6 @@ class propertyProfile : Fragment() {
         db = FirebaseFirestore.getInstance()
         storage = FirebaseStorage.getInstance()
 
-
         binding.profilePicture.setOnClickListener {
             openGalleryForImage()
         }
@@ -52,17 +54,14 @@ class propertyProfile : Fragment() {
         }
 
         binding.btnUserFeedback.setOnClickListener {
-            // Navigate to user feedback page
             findNavController().navigate(R.id.userFeedback)
         }
 
         binding.btnPaymentHistory.setOnClickListener {
-            // Navigate to payment history page
             findNavController().navigate(R.id.paymentHistory)
         }
 
         binding.btnReviewRating.setOnClickListener {
-            // Navigate to review and rating page
             //findNavController().navigate(R.id.action_propertyProfile_to_reviewRating)
         }
 
@@ -76,7 +75,6 @@ class propertyProfile : Fragment() {
         loadUserProfile()
     }
 
-    //for changing profile picture
     private fun openGalleryForImage() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
@@ -95,7 +93,6 @@ class propertyProfile : Fragment() {
         }
     }
 
-    //upload image to firebase
     private fun uploadImageToFirebase(imageUri: Uri) {
         val user = auth.currentUser
         if (user != null) {
@@ -115,14 +112,13 @@ class propertyProfile : Fragment() {
         }
     }
 
-    //save profile picture url to firestore
     private fun saveProfilePictureUrlToFirestore(profilePicUrl: String) {
         val user = auth.currentUser
         if (user != null) {
-            db.collection("users").document(user.email!!)
-                .update("profilePicture", profilePicUrl)
+            db.collection("customer").document(user.email!!)
+                .update("cusImage", profilePicUrl)
                 .addOnSuccessListener {
-                    binding.profilePicture.setImageURI(Uri.parse(profilePicUrl))
+                    Glide.with(this).load(profilePicUrl).into(binding.profilePicture)
                     Toast.makeText(requireContext(), "Profile picture updated", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { e ->
@@ -131,7 +127,6 @@ class propertyProfile : Fragment() {
         }
     }
 
-    //change user name
     private fun showChangeNameDialog() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Change User Name")
@@ -155,12 +150,11 @@ class propertyProfile : Fragment() {
         builder.show()
     }
 
-    //save user name
     private fun saveUserNameToFirestore(newName: String) {
         val user = auth.currentUser
         if (user != null) {
-            db.collection("users").document(user.email!!)
-                .update("userName", newName)
+            db.collection("customer").document(user.email!!)
+                .update("customerName", newName)
                 .addOnSuccessListener {
                     Toast.makeText(requireContext(), "User name updated", Toast.LENGTH_SHORT).show()
                 }
@@ -170,21 +164,17 @@ class propertyProfile : Fragment() {
         }
     }
 
-    //load user profile
     private fun loadUserProfile() {
         val user = auth.currentUser
         if (user != null) {
-            db.collection("users").document(user.email!!)
+            db.collection("customer").document(user.email!!)
                 .get()
                 .addOnSuccessListener { document ->
                     if (document != null) {
-                        val userName = document.getString("userName")
-                        val profilePicture = document.getString("profilePicture")
+                        val userName = document.getString("customerName")
+                        val profilePicture = document.getString("cusImage")
 
-                        binding.userName.text = userName
-                        if (!profilePicture.isNullOrEmpty()) {
-                            binding.profilePicture.setImageURI(Uri.parse(profilePicture))
-                        }
+                        updateUserProfile(userName, profilePicture)
                     }
                 }
                 .addOnFailureListener { e ->
@@ -192,8 +182,23 @@ class propertyProfile : Fragment() {
                 }
         }
     }
+
+    private fun updateUserProfile(userName: String?, profilePicture: String?) {
+        if (userName != null) {
+            binding.userName.text = userName
+        }
+
+        if (!profilePicture.isNullOrEmpty()) {
+            // Decode base64 string to bytes
+            val decodedBytes = Base64.decode(profilePicture, Base64.DEFAULT)
+
+            // Create Bitmap from decoded bytes
+            val bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+
+            // Load Bitmap into ImageView using Glide
+            Glide.with(this).load(bitmap).into(binding.profilePicture)
+        }
+    }
+
+
 }
-
-
-
-

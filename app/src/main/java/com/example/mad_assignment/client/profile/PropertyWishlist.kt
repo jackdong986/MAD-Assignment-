@@ -1,5 +1,6 @@
-package com.example.mad_assignment.client
+package com.example.mad_assignment.client.profile
 
+import PassWishlist
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,8 +10,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mad_assignment.databinding.FragmentPropertyWishlistBinding
-import com.example.mad_assignment.adapter.PassWishlist
 import com.example.mad_assignment.adapter.PropertyAdapter
+
 
 class PropertyWishlist : Fragment() {
     private lateinit var binding: FragmentPropertyWishlistBinding

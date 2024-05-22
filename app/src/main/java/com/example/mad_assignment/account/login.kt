@@ -12,11 +12,13 @@ import com.example.mad_assignment.MainActivity
 import com.example.mad_assignment.R
 import com.example.mad_assignment.databinding.FragmentLoginBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class login : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private val nav by lazy { findNavController() }
     private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +32,7 @@ class login : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
 
         binding.loginButton.setOnClickListener {
             val email = binding.emailEditText.text.toString().trim()
@@ -55,6 +58,7 @@ class login : Fragment() {
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, navigate to home screen or main activity
+                    saveAuthenticationData(email, password)
                     val intent = Intent(requireContext(), MainActivity::class.java)
                     startActivity(intent)
                     requireActivity().finish()
@@ -64,4 +68,48 @@ class login : Fragment() {
                 }
             }
     }
+    private fun saveAuthenticationData(email: String, password: String) {
+        val db = FirebaseFirestore.getInstance()
+        val userRef = db.collection("customer").document(email)
+
+        // Check if the user already exists in Firestore
+        userRef.get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val document = task.result
+                if (document.exists()) {
+                    // User already exists, update the existing document with the latest data
+                    userRef.update("password", password)
+                        .addOnSuccessListener {
+                            println("DocumentSnapshot updated with password: $password")
+                        }
+                        .addOnFailureListener { e ->
+                            println("Error updating document: $e")
+                        }
+                } else {
+                    // User does not exist, add a new document
+                    val userData = hashMapOf(
+                        "id" to "default_id",
+                        "customerName" to "Default Name",
+                        "customerEmail" to email,
+                        "cusImage" to "default_image_url",
+                        "password" to password
+                    )
+
+                    db.collection("customer")
+                        .document(email)
+                        .set(userData)
+                        .addOnSuccessListener {
+                            println("DocumentSnapshot added with ID: $email")
+                        }
+                        .addOnFailureListener { e ->
+                            println("Error adding document: $e")
+                        }
+                }
+            } else {
+                println("get failed with ${task.exception}")
+            }
+        }
+    }
+
+
 }

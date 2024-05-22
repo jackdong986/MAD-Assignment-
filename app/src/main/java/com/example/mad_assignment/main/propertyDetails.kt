@@ -1,8 +1,8 @@
 package com.example.mad_assignment.main
 
+import PassWishlist
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,14 +15,9 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.mad_assignment.R
 import com.example.mad_assignment.databinding.FragmentPropertyDetailsBinding
-import com.example.mad_assignment.adapter.PassWishlist
 import com.example.mad_assignment.util.setImageBlob
-import com.example.mad_assignment.util.toBlob
 import com.example.mad_assignment.viewModel.Property
 import com.google.firebase.firestore.Blob
-import kotlinx.coroutines.CoroutineStart
-import kotlin.io.encoding.Base64
-import kotlin.io.encoding.ExperimentalEncodingApi
 
 class propertyDetails : Fragment() {
 

@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mad_assignment.R
 import com.example.mad_assignment.databinding.FragmentPropertySearchBinding
 import com.example.mad_assignment.adapter.PropertyAdapter
-import com.example.mad_assignment.client.propertyWishlistDirections
 import com.example.mad_assignment.viewModel.Property
 import com.google.firebase.firestore.FirebaseFirestore
 
