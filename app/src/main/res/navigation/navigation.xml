@@ -9,45 +9,49 @@
         android:id="@+id/property_Home"
         android:name="com.example.mad_assignment.main.property_Home"
         android:label="Property Home"
-        tools:layout="@layout/fragment_property_home" >
-    <action
-        android:id="@+id/action_propertyHome_to_propertyDetails"
-        app:destination="@id/propertyDetails" >
-        <argument
-            android:name="id"
-            app:argType="string" />
-        <argument
-            android:name="propertyName"
-            app:argType="string" />
-        <argument
-            android:name="propertyPrice"
-            app:argType="integer" />
-        <argument
-            android:name="propertyImage"
-            app:argType="string" />
-        <argument
-            android:name="propertyAddress"
-            app:argType="string" />
-        <argument
-            android:name="propertyCity"
-            app:argType="string" />
-        <argument
-            android:name="propertyState"
-            app:argType="string" />
-        <argument
-            android:name="propertyBathrooms"
-            app:argType="integer" />
-        <argument
-            android:name="propertyBedrooms"
-            app:argType="integer" />
-        <argument
-            android:name="propertyDescription"
-            app:argType="string" />
-        <argument
-            android:name="hostId"
-            app:argType="string" />
-    </action>
+        tools:layout="@layout/fragment_property_home">
+        <action
+            android:id="@+id/action_propertyHome_to_propertyDetails"
+            app:destination="@id/propertyDetails">
+            <argument
+                android:name="id"
+                app:argType="string" />
+            <argument
+                android:name="propertyName"
+                app:argType="string" />
+            <argument
+                android:name="propertyPrice"
+                app:argType="integer" />
+            <argument
+                android:name="propertyImage"
+                app:argType="string" />
+            <argument
+                android:name="propertyAddress"
+                app:argType="string" />
+            <argument
+                android:name="propertyCity"
+                app:argType="string" />
+            <argument
+                android:name="propertyState"
+                app:argType="string" />
+            <argument
+                android:name="propertyBathrooms"
+                app:argType="integer" />
+            <argument
+                android:name="propertyBedrooms"
+                app:argType="integer" />
+            <argument
+                android:name="propertyDescription"
+                app:argType="string" />
+            <argument
+                android:name="hostId"
+                app:argType="string" />
+        </action>
+        <action
+            android:id="@+id/action_propertyHome_to_imageViewFragment"
+            app:destination="@id/imageView" />
     </fragment>
+
     <fragment
         android:id="@+id/propertyDetails"
         android:name="com.example.mad_assignment.main.propertyDetails"
@@ -89,13 +93,53 @@
         <action
             android:id="@+id/action_propertyDetails_to_propertyWishlist"
             app:destination="@id/propertyWishlist" />
+        <action
+            android:id="@+id/action_propertyDetails_to_propertyCheckout"
+            app:destination="@id/propertyCheckout" />
     </fragment>
 
     <fragment
         android:id="@+id/propertyCheckout"
         android:name="com.example.mad_assignment.transaction.propertyCheckOut"
         android:label="Property Checkout"
-        tools:layout="@layout/fragment_property_check_out" />
+        tools:layout="@layout/fragment_property_check_out">
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <argument
+            android:name="propertyName"
+            app:argType="string" />
+        <argument
+            android:name="propertyPrice"
+            app:argType="integer" />
+        <argument
+            android:name="propertyImage"
+            app:argType="string" />
+        <argument
+            android:name="propertyAddress"
+            app:argType="string" />
+        <argument
+            android:name="propertyCity"
+            app:argType="string" />
+        <argument
+            android:name="propertyState"
+            app:argType="string" />
+        <argument
+            android:name="propertyBathrooms"
+            app:argType="integer" />
+        <argument
+            android:name="propertyBedrooms"
+            app:argType="integer" />
+        <argument
+            android:name="propertyDescription"
+            app:argType="string" />
+        <argument
+            android:name="hostId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_propertyCheckout_to_propertyDetails"
+            app:destination="@id/propertyDetails" />
+    </fragment>
 
     <fragment
         android:id="@+id/makePayment"
@@ -103,19 +147,19 @@
         android:label="Make Payment"
         tools:layout="@layout/fragment_make_payment" />
 
-
     <fragment
         android:id="@+id/propertySearch"
         android:name="com.example.mad_assignment.main.propertySearch"
         android:label="Property Search"
-        tools:layout="@layout/fragment_property_search" >
+        tools:layout="@layout/fragment_property_search">
         <action
             android:id="@+id/action_propertySearch_to_propertyDetails"
             app:destination="@id/propertyDetails" />
     </fragment>
+
     <fragment
         android:id="@+id/propertyWishlist"
-        android:name="com.example.mad_assignment.client.propertyWishlist"
+        android:name="com.example.mad_assignment.client.profile.PropertyWishlist"
         android:label="Property Wishlist"
         tools:layout="@layout/fragment_property_wishlist">
         <action
@@ -128,14 +172,26 @@
         android:name="com.example.mad_assignment.client.profile.propertyProfile"
         android:label="Property Profile"
         tools:layout="@layout/fragment_property_profile" />
+
     <fragment
         android:id="@+id/userFeedback"
         android:name="com.example.mad_assignment.client.profile.userFeedback"
         android:label="User Feedback"
         tools:layout="@layout/fragment_user_feedback" />
+
     <fragment
         android:id="@+id/paymentHistory"
         android:name="com.example.mad_assignment.client.profile.paymentHistory"
         android:label="Payment History"
         tools:layout="@layout/fragment_payment_history" />
+
+    <fragment
+        android:id="@+id/imageView"
+        android:name="com.example.mad_assignment.main.ImageView"
+        android:label="Image View"
+        tools:layout="@layout/fragment_image_view">
+        <argument
+            android:name="imageResId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

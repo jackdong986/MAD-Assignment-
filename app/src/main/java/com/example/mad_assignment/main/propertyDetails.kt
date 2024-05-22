@@ -1,25 +1,23 @@
 package com.example.mad_assignment.main
 
+import PassWishlist
 import android.annotation.SuppressLint
-import android.graphics.BitmapFactory
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.mad_assignment.R
 import com.example.mad_assignment.databinding.FragmentPropertyDetailsBinding
-import com.example.mad_assignment.adapter.PassWishlist
 import com.example.mad_assignment.util.setImageBlob
-import com.example.mad_assignment.util.toBlob
 import com.example.mad_assignment.viewModel.Property
 import com.google.firebase.firestore.Blob
-import kotlinx.coroutines.CoroutineStart
-import kotlin.io.encoding.Base64
-import kotlin.io.encoding.ExperimentalEncodingApi
 
 class propertyDetails : Fragment() {
 
@@ -35,7 +33,6 @@ class propertyDetails : Fragment() {
         return binding.root
     }
 
-    @OptIn(ExperimentalEncodingApi::class)
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -87,24 +84,57 @@ class propertyDetails : Fragment() {
             hostId = hostId
         )
 
-        if (passWishlist.wishlist.value?.contains(propertyDatatype) == true) {
-            binding.buttonAddToFavorites.text = "Remove from Favorites"
-        } else {
-            binding.buttonAddToFavorites.text = "Add to Favorites"
-        }
-
-        binding.buttonAddToFavorites.setOnClickListener {
-            if (passWishlist.wishlist.value?.contains(propertyDatatype) == false) {
-                context?.let { passWishlist.addToWishlist(propertyDatatype, it) }
+        passWishlist.wishlist.observe(viewLifecycleOwner) { wishlist ->
+            if (wishlist.contains(propertyDatatype)) {
                 binding.buttonAddToFavorites.text = "Remove from Favorites"
             } else {
-                context?.let { passWishlist.removeFromWishlist(propertyDatatype, it) }
                 binding.buttonAddToFavorites.text = "Add to Favorites"
             }
         }
 
+        binding.buttonAddToFavorites.setOnClickListener {
+            if (passWishlist.wishlist.value?.contains(propertyDatatype) == true) {
+                context?.let { ctx -> passWishlist.removeFromWishlist(propertyDatatype, ctx) }
+            } else {
+                context?.let { ctx -> passWishlist.addToWishlist(propertyDatatype, ctx) }
+            }
+        }
+
+
+        binding.buttonScheduleViewing.setOnClickListener {
+            val phoneNumber = "+601123180903"  // Replace with the WhatsApp number you want to message
+
+            // Create intent to open WhatsApp
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("https://wa.me/$phoneNumber")
+
+            // Check if WhatsApp is installed
+            context?.packageManager?.let { pm ->
+                if (intent.resolveActivity(pm) != null) {
+                    startActivity(intent)
+                } else {
+                    // WhatsApp not installed, handle error or show message
+                    Toast.makeText(requireContext(), "WhatsApp not installed", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+
         binding.buttonRentNow.setOnClickListener {
-            findNavController().navigate(R.id.propertyCheckout)
+            val action = propertyDetailsDirections.actionPropertyDetailsToPropertyCheckout(
+                id = propertyId,
+                propertyName = propertyName,
+                propertyPrice = propertyPrice.toInt(),
+                propertyImage = propertyImageBytes.toString(),
+                propertyAddress = propertyAddress,
+                propertyCity = propertyCity,
+                propertyState = propertyState,
+                propertyBathrooms = propertyBathrooms,
+                propertyBedrooms = propertyBedrooms,
+                propertyDescription = propertyDescription,
+                hostId = hostId
+            )
+            nav.navigate(action)
         }
     }
 }

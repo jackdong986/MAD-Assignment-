@@ -2,7 +2,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/login_background">
+
+    <!-- ImageView for the logo -->
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="301dp"
+        android:layout_height="331dp"
+        android:layout_gravity="center"
+        android:contentDescription="Logo"
+        android:src="@drawable/ic_launcher_foreground" />
+
+
+    <!-- Space between the logo and the input fields -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
 
     <EditText
         android:id="@+id/emailEditText"
@@ -10,7 +26,9 @@
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:hint="Email"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:background="@drawable/edit_text_background"
+        android:layout_marginBottom="8dp"/>
 
     <EditText
         android:id="@+id/passwordEditText"
@@ -18,7 +36,9 @@
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:background="@drawable/edit_text_background"
+        android:layout_marginBottom="8dp"/>
 
     <Button
         android:id="@+id/registerButton"

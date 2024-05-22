@@ -24,20 +24,20 @@ class SplashScreen : AppCompatActivity() {
         val splashScreenDuration = 2000L // 2 seconds
 //        val hostActivityIntent = Intent(this, HostActivity::class.java)
         val splashScreenRunnable = Runnable {
-            //Log out
-            auth.signOut()
+
             val currentUser = auth.currentUser
             if (currentUser != null) {
                 // User is logged in, navigate to MainActivity
-                val hostActivityIntent = Intent(this, HostActivity::class.java)
-                startActivity(hostActivityIntent)
+                val mainActivityIntent = Intent(this, MainActivity::class.java)
+                startActivity(mainActivityIntent)
             } else {
                 // No user is logged in, navigate to LoginActivity
-                val loginIntent = Intent(this, AuthHostActivity::class.java)
+                val loginIntent = Intent(this, accManagement::class.java)
                 startActivity(loginIntent)
             }
 
-//            startActivity(hostActivityIntent)
+            //startActivity(hostActivityIntent)
+
             finish()
         }
         // Schedule the splash screen to finish after a delay

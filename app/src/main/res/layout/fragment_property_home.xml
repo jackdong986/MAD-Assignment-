@@ -10,7 +10,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:padding="16dp"
         tools:context=".main.property_Home">
+
+        <!-- Title for Image Slider -->
+        <TextView
+            android:id="@+id/slider_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tenant Trove"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/black" />
 
         <!-- Image Slider -->
         <androidx.viewpager2.widget.ViewPager2
@@ -20,16 +33,30 @@
             android:clipToPadding="false"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            app:layout_constraintBottom_toTopOf="@id/recycler_view"
-            app:layout_constraintTop_toTopOf="parent"
             tools:item="@layout/item_image_slider" />
+
+        <!-- Spacer -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <!-- Title for Property List -->
+        <TextView
+            android:id="@+id/property_list_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Available Properties"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/black" />
 
         <!-- Property RecyclerView -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="1242dp"
-            android:layout_weight="1"
+            android:layout_height="1200dp"
             android:clipToPadding="false"
             android:padding="4dp"
             tools:listitem="@layout/item_property" />

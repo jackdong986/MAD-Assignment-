@@ -2,7 +2,8 @@ package com.example.mad_assignment.viewModel
 
 import android.content.Context
 import android.graphics.BitmapFactory
-import androidx.core.content.ContextCompat.getString
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import com.example.mad_assignment.R
 import com.example.mad_assignment.util.toBlob
 import com.google.firebase.Firebase
@@ -11,7 +12,6 @@ import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.Exclude
 import com.google.firebase.firestore.firestore
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.Date
 import java.util.Locale
 
@@ -22,6 +22,17 @@ data class Host(
     var hostEmail: String = "",
     var hostImage: Blob = Blob.fromBytes(ByteArray(0))
 )
+
+
+@Parcelize
+data class Customer(
+    @DocumentId
+    var id: String = "",
+    var customerName: String = "",
+    var customerEmail: String = "",
+    var cusImage: String = "",
+    var password: String = ""
+) : Parcelable
 
 data class Property(
     @DocumentId

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.util.PatternsCompat
 import androidx.navigation.fragment.findNavController
 import com.example.mad_assignment.R
 import com.example.mad_assignment.databinding.FragmentRegistrationBinding
@@ -31,12 +32,25 @@ class RegistrationFragment : Fragment() {
         binding.registerButton.setOnClickListener {
             val email = binding.emailEditText.text.toString().trim()
             val password = binding.passwordEditText.text.toString().trim()
-            if (email.isNotEmpty() && password.isNotEmpty()) {
+
+            if (isValidEmail(email) && isValidPassword(password)) {
                 registerUser(email, password)
             } else {
-                Toast.makeText(requireContext(), "Please enter email and password", Toast.LENGTH_SHORT).show()
+                if (!isValidEmail(email)) {
+                    Toast.makeText(requireContext(), "Please enter a valid email address", Toast.LENGTH_SHORT).show()
+                } else if (!isValidPassword(password)) {
+                    Toast.makeText(requireContext(), "Password should be at least 6 characters long", Toast.LENGTH_SHORT).show()
+                }
             }
         }
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        return PatternsCompat.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    private fun isValidPassword(password: String): Boolean {
+        return password.length >= 6
     }
 
     private fun registerUser(email: String, password: String) {
@@ -48,7 +62,7 @@ class RegistrationFragment : Fragment() {
                     findNavController().navigate(R.id.login)
                 } else {
                     // If registration fails, display a message to the user.
-                    Toast.makeText(requireContext(), "Registration failed.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Registration failed. ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
     }

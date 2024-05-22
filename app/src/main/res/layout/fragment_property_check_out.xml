@@ -33,9 +33,9 @@
         android:elevation="4dp">
 
         <ImageView
+            android:id="@+id/propertyImage"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/icon_image_not_found_free_vector"
             android:scaleType="centerCrop"
             android:contentDescription="Property Image" />
 
@@ -48,6 +48,7 @@
             tools:ignore="RtlSymmetry">
 
             <TextView
+                android:id="@+id/propertyName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Property Name"
@@ -55,11 +56,30 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/propertyAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Property Address"
                 android:textSize="14sp"
                 android:textColor="@color/gray" />
+
+            <TextView
+                android:id="@+id/propertyDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Property Description"
+                android:textSize="14sp"
+                android:textColor="@color/gray" />
+
+            <TextView
+                android:id="@+id/propertyPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Property Price"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:paddingTop="4dp" />
 
         </LinearLayout>
     </LinearLayout>
@@ -88,9 +108,11 @@
                 android:id="@+id/startDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="11/28/2021"
+                android:text="Select Start Date"
                 android:textSize="16sp"
-                android:paddingTop="4dp" />
+                android:paddingTop="4dp"
+                android:clickable="true"
+                android:focusable="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -110,9 +132,11 @@
                 android:id="@+id/endDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="01/28/2022"
+                android:text="Select End Date"
                 android:textSize="16sp"
-                android:paddingTop="4dp" />
+                android:paddingTop="4dp"
+                android:clickable="true"
+                android:focusable="true" />
         </LinearLayout>
     </LinearLayout>
 
@@ -145,55 +169,57 @@
             android:textSize="14sp"
             android:textColor="@color/gray" />
 
-        <LinearLayout
+        <RadioGroup
+            android:id="@+id/paymentMethodGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="4dp">
 
-            <TextView
-                android:id="@+id/paymentMethod"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="****@an@email.com"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/changePaymentMethod"
+            <RadioButton
+                android:id="@+id/paymentFpx"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Change"
-                android:textSize="16sp"
-                android:textColor="@color/colorPrimary"
-                android:paddingStart="8dp"
-                tools:ignore="RtlSymmetry" />
-        </LinearLayout>
+                android:text="FPX" />
+
+            <RadioButton
+                android:id="@+id/paymentCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Card" />
+
+            <RadioButton
+                android:id="@+id/paymentGrabPay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GrabPay" />
+        </RadioGroup>
     </LinearLayout>
 
-    <!-- Referral Code -->
+    <!-- Total Amount -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:paddingTop="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Referral Code"
-            android:textSize="14sp"
-            android:textColor="@color/gray" />
-
-        <EditText
-            android:id="@+id/referralCode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:hint="Enter Code"
-            android:padding="12dp"
+            android:text="Total Amount"
             android:textSize="16sp"
-            android:inputType="text" />
+            android:textColor="@color/gray"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/totalAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RM 0.00"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_weight="1" />
     </LinearLayout>
 
     <!-- Next Button -->
