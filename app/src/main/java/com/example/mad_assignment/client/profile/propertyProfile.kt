@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
 import android.util.Base64
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
+import java.io.IOException
 import java.io.InputStream
 
 class propertyProfile : Fragment() {
@@ -92,6 +94,7 @@ class propertyProfile : Fragment() {
         }
     }
 
+
     private fun uploadImageToFirebase(imageUri: Uri) {
         val user = auth.currentUser
         if (user != null) {
@@ -99,16 +102,24 @@ class propertyProfile : Fragment() {
             val profilePicRef = storageRef.child("profile_pictures/${user.email}.jpg")
 
             // Get the Bitmap from the Uri
-            val inputStream: InputStream? = requireContext().contentResolver.openInputStream(imageUri)
-            val bitmap = BitmapFactory.decodeStream(inputStream)
-            inputStream?.close()
+            try {
+                val inputStream: InputStream? = requireContext().contentResolver.openInputStream(imageUri)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                inputStream?.close()
 
-            // Convert the Bitmap to Base64 string
-            val base64String = encodeImageToBase64(bitmap)
+                // Convert the Bitmap to Base64 string
+                val base64String = encodeImageToBase64(bitmap)
 
-            saveProfilePictureUrlToFirestore(base64String)
+                Log.d("UploadImage", "Base64 String Length: ${base64String.length}")
+
+                saveProfilePictureUrlToFirestore(base64String)
+            } catch (e: IOException) {
+                Toast.makeText(requireContext(), "Failed to decode image: ${e.message}", Toast.LENGTH_SHORT).show()
+                Log.e("UploadImage", "IOException: ${e.message}")
+            }
         }
     }
+
 
     private fun encodeImageToBase64(bitmap: Bitmap): String {
         val byteArrayOutputStream = ByteArrayOutputStream()
@@ -123,11 +134,7 @@ class propertyProfile : Fragment() {
             db.collection("customer").document(user.email!!)
                 .update("cusImage", profilePicBase64)
                 .addOnSuccessListener {
-                    // Decode Base64 string to Bitmap and load it into ImageView
-                    val decodedBytes = Base64.decode(profilePicBase64, Base64.DEFAULT)
-                    val bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
-                    Glide.with(this).load(bitmap).into(binding.profilePicture)
-
+                    // Optionally, you can update the UI with the new profile picture here
                     Toast.makeText(requireContext(), "Profile picture updated", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { e ->
@@ -135,6 +142,7 @@ class propertyProfile : Fragment() {
                 }
         }
     }
+
 
     private fun showChangeNameDialog() {
         val builder = AlertDialog.Builder(requireContext())
@@ -208,4 +216,5 @@ class propertyProfile : Fragment() {
             Glide.with(this).load(bitmap).into(binding.profilePicture)
         }
     }
+
 }
