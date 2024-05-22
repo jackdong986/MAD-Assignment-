@@ -20,7 +20,6 @@ data class Host(
     var id: String = "",
     var hostName: String = "",
     var hostEmail: String = "",
-    var hostPhone: String = "",
     var hostImage: Blob = Blob.fromBytes(ByteArray(0))
 )
 
@@ -54,7 +53,7 @@ data class Renting(
     var hostId: String = "",
     var custId: String = "",
     var paymentStatus: String = "" ,//Success, Failed, Pending
-    val dateFormat: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+    val createdAt: Date = Date()
 )
 
 data class Feedback(
@@ -95,31 +94,36 @@ fun RESTORE(ctx: Context){
             "R001", 19.00,
             dateFormat.parse("2023-05-01 10:00:00")!!,
             dateFormat.parse("2024-05-01 10:00:00")!!,
-            1, 19.00 * 1, "P001", "H001", "C001", "Success"
+            1, 19.00 * 1, "P001", "H001", "C001", "Success",
+            Date()
         ),
         Renting(
             "R002", 109.00,
             dateFormat.parse("2023-06-01 11:00:00")!!,
             dateFormat.parse("2024-06-01 11:00:00")!!,
-            2, 109.00 * 2, "P002", "H001", "C001", "Success"
+            2, 109.00 * 2, "P002", "H001", "C001", "Success",
+            Date()
         ),
         Renting(
             "R003", 119.00,
             dateFormat.parse("2023-07-01 12:00:00")!!,
             dateFormat.parse("2024-07-01 12:00:00")!!,
-            3, 119.00 * 3, "P003", "H001", "C001", "Success"
+            3, 119.00 * 3, "P003", "H001", "C001", "Success",
+            Date()
         ),
         Renting(
             "R004", 29.00,
             dateFormat.parse("2023-08-01 13:00:00")!!,
             dateFormat.parse("2024-08-01 13:00:00")!!,
-            4, 29.00 * 4, "P004", "H001", "C001", "Success"
+            4, 29.00 * 4, "P004", "H001", "C001", "Success",
+            Date()
         ),
         Renting(
             "R005", 9.00,
             dateFormat.parse("2023-09-01 14:00:00")!!,
             dateFormat.parse("2024-09-01 14:00:00")!!,
-            5, 9.00 * 4, "P005", "H001", "C001", "Success"
+            5, 9.00 * 4, "P005", "H001", "C001", "Success",
+            Date()
         )
     )
 

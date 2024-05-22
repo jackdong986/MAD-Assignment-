@@ -8,7 +8,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.mad_assignment.databinding.ActivityHostBinding
+import com.example.mad_assignment.viewModel.HostVM
 import com.example.mad_assignment.viewModel.PropertyVM
+import com.example.mad_assignment.viewModel.RentingVM
 
 class HostActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHostBinding
@@ -16,8 +18,12 @@ class HostActivity : AppCompatActivity() {
     private lateinit var abc: AppBarConfiguration
 
     private val propertyVM: PropertyVM by viewModels()
+    private val rentingVM: RentingVM by viewModels()
+    private val hostVM: HostVM by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         propertyVM.init()
+        rentingVM.init()
+        hostVM.init()
 
         super.onCreate(savedInstanceState)
         binding = ActivityHostBinding.inflate(layoutInflater)
@@ -27,7 +33,7 @@ class HostActivity : AppCompatActivity() {
             setOf(
                 R.id.hostDashboardFragment,
                 R.id.propertyHostFragment,
-                R.id.hostReservationFragment,
+                R.id.hostRentingFragment,
                 R.id.hostProfileFragment,
             )
         )

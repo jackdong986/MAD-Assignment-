@@ -16,10 +16,10 @@
         android:label="Property"
         tools:layout="@layout/fragment_property_host" />
     <fragment
-        android:id="@+id/hostReservationFragment"
-        android:name="com.example.mad_assignment.main.HostReservationFragment"
-        android:label="Reservation"
-        tools:layout="@layout/fragment_host_reservation" />
+        android:id="@+id/hostRentingFragment"
+        android:name="com.example.mad_assignment.main.HostRentingFragment"
+        android:label="Renting"
+        tools:layout="@layout/fragment_host_renting" />
     <fragment
         android:id="@+id/hostProfileFragment"
         android:name="com.example.mad_assignment.main.HostProfileFragment"
@@ -35,4 +35,15 @@
         android:name="com.example.mad_assignment.main.PropertyHostInsertFragment"
         android:label="fragment_property_host_insert"
         tools:layout="@layout/fragment_property_host_insert" />
+    <fragment
+        android:id="@+id/hostRentingDetailFragment"
+        android:name="com.example.mad_assignment.main.HostRentingDetailFragment"
+        android:label="fragment_host_renting_detail"
+        tools:layout="@layout/fragment_host_renting_detail" />
+    <fragment
+        android:id="@+id/hostEditProfileFragment"
+        android:name="com.example.mad_assignment.main.HostEditProfileFragment"
+        android:label="fragment_host_edit_profile"
+        tools:layout="@layout/fragment_host_edit_profile" />
+
 </navigation>
