@@ -85,6 +85,7 @@ class propertyCheckOut : Fragment() {
             if (validateInput()) {
                 calculateTotalAmount()
                 uploadRentingData("Success")
+                findNavController().navigate(R.id.property_Home)
             }
         }
 
@@ -93,6 +94,7 @@ class propertyCheckOut : Fragment() {
             if (validateInput()) {
                 calculateTotalAmount()
                 uploadRentingData("Failed")
+                findNavController().navigate(R.id.property_Home)
             }
         }
     }
