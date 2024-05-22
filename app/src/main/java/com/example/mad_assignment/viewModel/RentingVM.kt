@@ -17,6 +17,8 @@ class RentingVM: ViewModel() {
     }
 
     override fun onCleared() {
+
+
         listener?.remove()
     }
 

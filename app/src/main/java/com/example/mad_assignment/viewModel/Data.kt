@@ -94,14 +94,14 @@ fun RESTORE(ctx: Context){
             "R001", 19.00,
             dateFormat.parse("2023-05-01 10:00:00")!!,
             dateFormat.parse("2024-05-01 10:00:00")!!,
-            1, 19.00 * 1, "P001", "H001", "C001", "Success",
+            1, 19.00 * 1, "P001", "z19Hjn844vTIT5HVJwUmo47Guhz2", "C001", "Success",
             Date()
         ),
         Renting(
             "R002", 109.00,
             dateFormat.parse("2023-06-01 11:00:00")!!,
             dateFormat.parse("2024-06-01 11:00:00")!!,
-            2, 109.00 * 2, "P002", "H001", "C001", "Success",
+            2, 109.00 * 2, "P002", "z19Hjn844vTIT5HVJwUmo47Guhz2", "C001", "Success",
             Date()
         ),
         Renting(
