@@ -22,6 +22,7 @@ class PaymentHistoryAdapter(
         val paymentStatus: TextView = itemView.findViewById(R.id.payment_status)
         val totalAmount: TextView = itemView.findViewById(R.id.total_amount)
         val totalMonth: TextView = itemView.findViewById(R.id.total_month)
+        val createdat: TextView = itemView.findViewById(R.id.created_At)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -45,6 +46,7 @@ class PaymentHistoryAdapter(
         holder.paymentStatus.text = renting.paymentStatus
         holder.totalAmount.text = "Total Amount: ${renting.totalAmount}"
         holder.totalMonth.text = "Total Months: ${renting.totalMonth}"
+        holder.createdat.text = "Created At: ${renting.createdAt}"
     }
 
     override fun getItemCount(): Int = rentingList.size
