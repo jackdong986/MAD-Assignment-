@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/hostRentingFragment"
         android:name="com.example.mad_assignment.main.HostRentingFragment"
-        android:label="fragment_host_renting"
+        android:label="Renting"
         tools:layout="@layout/fragment_host_renting" />
     <fragment
         android:id="@+id/hostProfileFragment"
