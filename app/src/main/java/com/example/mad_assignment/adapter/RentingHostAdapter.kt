@@ -45,8 +45,8 @@ class RentingHostAdapter(
             }
         }
 
-        holder.binding.rentingTotalAmount.text = renting.totalAmount.toString()
-        holder.binding.rentingTotalMonth.text = renting.totalMonth.toString()
+        holder.binding.rentingTotalAmount.text = "RM ${renting.totalAmount}"
+        holder.binding.rentingTotalMonth.text = "(${renting.totalMonth} month(s))"
         // format date to (dd MM yyyy), EG 21 June 2021
         val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
         holder.binding.rentingStartDate.text = dateFormat.format(renting.rentingStartDate)

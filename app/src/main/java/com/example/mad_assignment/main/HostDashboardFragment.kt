@@ -58,6 +58,7 @@ class HostDashboardFragment : Fragment() {
         // Initialize chart
         lineChartView = binding.lineChart
         lineChart = AnyChart.line()
+        lineChart.credits().enabled(false)
         lineChart.title("Trend of Sales")
         lineChart.yAxis(0).title("Total Sales (RM)")
         lineChartView.setChart(lineChart)
