@@ -40,5 +40,10 @@
         android:name="com.example.mad_assignment.main.HostRentingDetailFragment"
         android:label="fragment_host_renting_detail"
         tools:layout="@layout/fragment_host_renting_detail" />
+    <fragment
+        android:id="@+id/hostEditProfileFragment"
+        android:name="com.example.mad_assignment.main.HostEditProfileFragment"
+        android:label="fragment_host_edit_profile"
+        tools:layout="@layout/fragment_host_edit_profile" />
 
 </navigation>

@@ -47,13 +47,15 @@ class HostProfileFragment : Fragment() {
         if (user != null) {
             val hostId = user.uid
             observeHost(hostId)
+
+            binding.btnEditHostProfile.setOnClickListener {
+                nav.navigate(R.id.hostEditProfileFragment)
+            }
         } else {
             errorDialog("User not logged in")
         }
 
-        binding.btnEditHostProfile.setOnClickListener {
-//            nav.navigate(R.id.fragment)
-        }
+
 
         binding.btnHostLogout.setOnClickListener {
             auth.signOut()
