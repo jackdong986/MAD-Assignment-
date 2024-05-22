@@ -37,6 +37,7 @@
         android:layout_height="150dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
+        app:cardBackgroundColor="#eaddff"
         app:cardCornerRadius="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -52,6 +53,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:text="Total Renting Amount"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="TextView"
+                android:text="RM XXX"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txttitleTotalRentingAmount" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -71,9 +73,10 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginEnd="28dp"
+        app:cardBackgroundColor="#eaddff"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cardView" >
+        app:layout_constraintTop_toTopOf="@+id/cardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -83,9 +86,10 @@
                 android:id="@+id/txtTitleTotalRenting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Total Renting"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -95,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="TextView"
+                android:text="0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtTitleTotalRenting" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -106,6 +110,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="16dp"
+        app:cardBackgroundColor="#eaddff"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,9 +124,10 @@
                 android:id="@+id/txtTitleAverageRentingAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Average Renting"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -131,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="TextView"
+                android:text="RM XXX"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtTitleAverageRentingAmount" />
         </androidx.constraintlayout.widget.ConstraintLayout>
