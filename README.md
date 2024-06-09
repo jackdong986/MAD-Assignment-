@@ -17,3 +17,14 @@ This project is a property renting platform named TenantTrove, built using Andro
 10. Connect an Android device or start an emulator.
 11. Click on Run > Run 'app'.
 
+# Test Data 
+Customer
+```
+dongwj-wm21@student.tarc.edu.my
+64398631
+```
+Host
+```
+programmingwong@gmail.com
+123456
+```
