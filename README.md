@@ -4,7 +4,5 @@ This project is a property renting platform named TenantTrove, built using Andro
 # Demo Slide
 [Slide](Slide.pdf)
 
-# How to Run Locally
-
 # Firebase
 [Firebase Auth and Firestore Database](https://console.firebase.google.com/project/tenanttrove-80bc3/overview)
